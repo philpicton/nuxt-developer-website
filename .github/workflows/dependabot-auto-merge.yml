@@ -1,0 +1,362 @@
+name: Dependabot Auto-Merge
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  # Run tests and linting before auto-merge
+  test:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run linter
+        id: lint
+        run: |
+          echo "::group::Running ESLint..."
+          if ! bun run lint; then
+            echo "::endgroup::"
+            echo "::error::❌ Dependabot PR failed linting check"
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "❌ DEPENDABOT AUTO-MERGE BLOCKED: LINTING FAILED"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo ""
+            echo "This dependency update introduced linting errors."
+            echo ""
+            echo "⚠️  This PR will NOT be auto-merged."
+            echo ""
+            echo "🔧 To fix:"
+            echo "   1. Check out this PR branch locally"
+            echo "   2. Run: bun run lint"
+            echo "   3. Fix the errors or update ESLint config if needed"
+            echo "   4. Commit fixes to this PR"
+            echo ""
+            echo "💡 Or close this PR and let Dependabot recreate it later"
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            exit 1
+          fi
+          echo "::endgroup::"
+          echo "✅ Linting passed"
+
+      - name: Check code formatting
+        id: format
+        run: |
+          echo "::group::Checking code formatting..."
+          if ! bun run format:check; then
+            echo "::endgroup::"
+            echo "::error::❌ Dependabot PR has formatting issues"
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "❌ DEPENDABOT AUTO-MERGE BLOCKED: FORMATTING FAILED"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo ""
+            echo "This dependency update needs formatting fixes."
+            echo ""
+            echo "⚠️  This PR will NOT be auto-merged."
+            echo ""
+            echo "🔧 To fix:"
+            echo "   1. Check out this PR branch locally"
+            echo "   2. Run: bun run format"
+            echo "   3. Commit the formatted files to this PR"
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            exit 1
+          fi
+          echo "::endgroup::"
+          echo "✅ Formatting check passed"
+
+      - name: TypeScript type checking
+        id: typecheck
+        run: |
+          echo "::group::Running TypeScript type check..."
+          if ! bun run typecheck; then
+            echo "::endgroup::"
+            echo "::error::❌ Dependabot PR has type errors"
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "❌ DEPENDABOT AUTO-MERGE BLOCKED: TYPE CHECK FAILED"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo ""
+            echo "This dependency update introduced TypeScript type errors."
+            echo ""
+            echo "⚠️  This PR will NOT be auto-merged."
+            echo ""
+            echo "🔍 Possible causes:"
+            echo "   - Breaking type changes in the dependency"
+            echo "   - New stricter type definitions"
+            echo "   - Type incompatibilities"
+            echo ""
+            echo "🔧 To fix:"
+            echo "   1. Check out this PR branch locally"
+            echo "   2. Run: bun run typecheck"
+            echo "   3. Review and fix the type errors"
+            echo "   4. Commit fixes to this PR"
+            echo ""
+            echo "💡 You may need to update your code to match new types"
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            exit 1
+          fi
+          echo "::endgroup::"
+          echo "✅ Type check passed"
+
+      - name: Run unit tests
+        id: test
+        run: |
+          echo "::group::Running unit tests..."
+          if ! bun run test -- --run; then
+            echo "::endgroup::"
+            echo "::error::❌ Dependabot PR failed unit tests"
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "❌ DEPENDABOT AUTO-MERGE BLOCKED: TESTS FAILED"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo ""
+            echo "This dependency update broke existing functionality."
+            echo ""
+            echo "⚠️  This PR will NOT be auto-merged and requires investigation."
+            echo ""
+            echo "🔍 Possible issues:"
+            echo "   - Breaking changes in the dependency"
+            echo "   - Changed API or behavior"
+            echo "   - Incompatible versions"
+            echo ""
+            echo "🔧 To investigate:"
+            echo "   1. Check the dependency's changelog/release notes"
+            echo "   2. Check out this PR branch locally"
+            echo "   3. Run: bun run test"
+            echo "   4. Review the failing tests"
+            echo "   5. Update code or tests as needed"
+            echo ""
+            echo "💡 The tests are catching potential bugs - investigate carefully!"
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            exit 1
+          fi
+          echo "::endgroup::"
+          echo "✅ All tests passed"
+
+      - name: Build project
+        id: build
+        run: |
+          echo "::group::Building project..."
+          if ! bun run build; then
+            echo "::endgroup::"
+            echo "::error::❌ Dependabot PR failed to build"
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "❌ DEPENDABOT AUTO-MERGE BLOCKED: BUILD FAILED"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo ""
+            echo "This dependency update broke the build."
+            echo ""
+            echo "⚠️  This PR will NOT be auto-merged and requires investigation."
+            echo ""
+            echo "🔍 Possible issues:"
+            echo "   - Breaking changes in the dependency"
+            echo "   - Type incompatibilities"
+            echo "   - Missing peer dependencies"
+            echo ""
+            echo "🔧 To investigate:"
+            echo "   1. Check the dependency's changelog/release notes"
+            echo "   2. Check out this PR branch locally"
+            echo "   3. Run: bun run build"
+            echo "   4. Review and fix the errors"
+            echo ""
+            echo "💡 You may need to update your code to work with the new version"
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            exit 1
+          fi
+          echo "::endgroup::"
+          echo "✅ Build successful"
+
+      - name: Test Summary
+        if: always()
+        run: |
+          echo "## 🤖 Dependabot Auto-Merge Status" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**PR:** ${{ github.event.pull_request.title }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Check Results:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.lint.outcome }}" == "success" ]; then
+            echo "✅ **Linting**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Linting**: Failed - Auto-merge blocked" >> $GITHUB_STEP_SUMMARY
+            echo "   - Run \`bun run lint\` to see errors" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ "${{ steps.format.outcome }}" == "success" ]; then
+            echo "✅ **Formatting**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Formatting**: Failed - Auto-merge blocked" >> $GITHUB_STEP_SUMMARY
+            echo "   - Run \`bun run format\` to fix" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ "${{ steps.typecheck.outcome }}" == "success" ]; then
+            echo "✅ **Type Check**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Type Check**: Failed - Auto-merge blocked" >> $GITHUB_STEP_SUMMARY
+            echo "   - Run \`bun run typecheck\` to see errors" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ "${{ steps.test.outcome }}" == "success" ]; then
+            echo "✅ **Unit Tests**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Unit Tests**: Failed - Auto-merge blocked" >> $GITHUB_STEP_SUMMARY
+            echo "   - Run \`bun run test\` to see failures" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ "${{ steps.build.outcome }}" == "success" ]; then
+            echo "✅ **Build**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Build**: Failed - Auto-merge blocked" >> $GITHUB_STEP_SUMMARY
+            echo "   - Run \`bun run build\` to see errors" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.lint.outcome }}" == "success" ] && [ "${{ steps.format.outcome }}" == "success" ] && [ "${{ steps.typecheck.outcome }}" == "success" ] && [ "${{ steps.test.outcome }}" == "success" ] && [ "${{ steps.build.outcome }}" == "success" ]; then
+            echo "🎉 **All checks passed!** This PR will be auto-merged." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ **Auto-merge blocked** - Fix the issues above and push to this branch." >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # Auto-approve and merge only patch and minor updates
+  auto-merge:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+    steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Auto-approve patch and minor updates
+        if: |
+          steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+          steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Enable auto-merge for patch and minor updates
+        if: |
+          steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+          steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        run: gh pr merge --auto --squash "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comment on major updates
+        if: steps.metadata.outputs.update-type == 'version-update:semver-major'
+        run: |
+          gh pr comment "$PR_URL" --body "⚠️ **Major version update detected!**
+          
+          This PR contains breaking changes and requires manual review.
+          
+          Please review the changelog and test thoroughly before merging."
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Comment on PR if checks failed to make it more visible
+  comment-on-failure:
+    runs-on: ubuntu-latest
+    needs: test
+    if: failure() && github.actor == 'dependabot[bot]'
+    steps:
+      - name: Comment on failed checks
+        run: |
+          gh pr comment "$PR_URL" --body "## ❌ Auto-merge blocked: Checks failed
+          
+          This Dependabot PR cannot be auto-merged because one or more checks failed.
+          
+          ### 🔍 What failed?
+          
+          Check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.
+          
+          ### 🔧 Common fixes:
+          
+          **If linting failed:**
+          \`\`\`bash
+          # Checkout the PR branch
+          gh pr checkout ${{ github.event.pull_request.number }}
+          
+          # Run linter to see errors
+          bun run lint
+          
+          # Try auto-fix
+          bunx eslint . --fix
+          
+          # Commit and push
+          git add .
+          git commit -m \"fix: resolve linting errors\"
+          git push
+          \`\`\`
+          
+          **If formatting failed:**
+          \`\`\`bash
+          # Checkout the PR branch
+          gh pr checkout ${{ github.event.pull_request.number }}
+          
+          # Format code
+          bun run format
+          
+          # Commit and push
+          git add .
+          git commit -m \"chore: format code\"
+          git push
+          \`\`\`
+          
+          **If type checking failed:**
+          \`\`\`bash
+          # Checkout the PR branch
+          gh pr checkout ${{ github.event.pull_request.number }}
+          
+          # Check types
+          bun run typecheck
+          
+          # Fix the type errors shown
+          # This may require code changes to match new types
+          
+          # Commit and push
+          git add .
+          git commit -m \"fix: resolve type errors\"
+          git push
+          \`\`\`
+          
+          **If build failed:**
+          - This may indicate breaking changes in the dependency
+          - Review the dependency's changelog
+          - You may need to update your code to work with the new version
+          
+          ### 💡 Alternative
+          
+          You can close this PR and Dependabot will recreate it later, potentially with fixes."
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

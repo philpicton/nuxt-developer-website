@@ -1,0 +1,58 @@
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    # Allow up to 10 open pull requests for npm dependencies
+    open-pull-requests-limit: 10
+    # Group all patch and minor updates together
+    groups:
+      # Group development dependencies
+      development-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+      # Group production dependencies (patch only for safer auto-merge)
+      production-dependencies:
+        dependency-type: "production"
+        update-types:
+          - "patch"
+    # Add labels to categorize PRs
+    labels:
+      - "dependencies"
+      - "npm"
+    # Prefix commit messages and PR titles
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    # Ignore major version updates for these packages (review manually)
+    ignore:
+      # Ignore all major updates - review manually for breaking changes
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    # Reviewers (optional - add GitHub usernames if needed)
+    # reviewers:
+    #   - "your-github-username"
+    # assignees:
+    #   - "your-github-username"
+
+  # Enable security updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "chore(ci)"
+      include: "scope"

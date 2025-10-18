@@ -1,0 +1,101 @@
+name: Security Audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Run every Monday at 9:00 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch: # Allow manual triggers
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run security audit
+        run: bun audit || true
+
+      - name: Check for vulnerabilities in lock file
+        run: |
+          echo "::group::Running security audit..."
+          # Run audit and capture output
+          AUDIT_OUTPUT=$(bun audit --json 2>&1 || true)
+          
+          # Check if there are high or critical vulnerabilities
+          if echo "$AUDIT_OUTPUT" | grep -q '"severity":"high"\|"severity":"critical"'; then
+            echo "::endgroup::"
+            echo "::error::❌ High or critical vulnerabilities found!"
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "❌ SECURITY VULNERABILITIES DETECTED"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo ""
+            echo "⚠️  HIGH OR CRITICAL VULNERABILITIES FOUND IN DEPENDENCIES"
+            echo ""
+            echo "$AUDIT_OUTPUT"
+            echo ""
+            echo "🔧 To fix:"
+            echo "   1. Run: bun run audit"
+            echo "   2. Review the vulnerabilities"
+            echo "   3. Run: bun run audit:fix (attempts auto-fix)"
+            echo "   4. Or manually update affected packages"
+            echo "   5. Commit and push the fixes"
+            echo ""
+            echo "💡 Check Dependabot PRs for available security updates"
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            exit 1
+          else
+            echo "::endgroup::"
+            echo "✅ No high or critical vulnerabilities found"
+          fi
+
+      - name: Upload audit results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-audit-report
+          path: |
+            bun-audit.log
+          retention-days: 30
+
+  # Check for outdated dependencies
+  outdated-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Check for outdated dependencies
+        run: |
+          echo "📦 Checking for outdated dependencies..."
+          bun outdated || true
+          
+      - name: Comment on PR if outdated major versions exist
+        if: github.event_name == 'pull_request'
+        run: |
+          OUTDATED=$(bun outdated --json 2>&1 || echo "[]")
+          if [ "$OUTDATED" != "[]" ]; then
+            echo "ℹ️ Some dependencies have newer versions available. Review manually for breaking changes."
+          fi
