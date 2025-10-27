@@ -33,14 +33,23 @@ useSeoMeta({
             <ContentBlogTag v-for="tag in post.tags" :key="tag" :text="tag"></ContentBlogTag>
             <div>
                 <h2>{{ post.title }}</h2>
-                <small>{{
-                    new Date(post.date).toLocaleDateString("en-GB", {
-                        weekday: "long",
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                    })
-                }}</small>
+                <ClientOnly>
+                    <time :datetime="post.date" class="text-sm">
+                        {{
+                            new Date(post.date).toLocaleDateString("en-GB", {
+                                weekday: "long",
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                            })
+                        }}
+                    </time>
+                    <template #fallback>
+                        <time :datetime="post.date" class="text-sm">
+                            {{ new Date(post.date).toLocaleDateString() }}
+                        </time>
+                    </template>
+                </ClientOnly>
             </div>
             <hr />
             <ContentSectionRenderer :value="post.body" />

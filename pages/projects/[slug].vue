@@ -43,19 +43,29 @@ useSeoMeta({
                     </span>
                 </div>
 
-                <time
-                    :datetime="project.date"
-                    class="text-sm text-slate-500 dark:text-slate-400"
-                >
-                    {{
-                        new Date(project.date).toLocaleDateString("en-GB", {
-                            weekday: "long",
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                        })
-                    }}
-                </time>
+                <ClientOnly>
+                    <time
+                        :datetime="project.date"
+                        class="text-sm text-slate-500 dark:text-slate-400"
+                    >
+                        {{
+                            new Date(project.date).toLocaleDateString("en-GB", {
+                                weekday: "long",
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                            })
+                        }}
+                    </time>
+                    <template #fallback>
+                        <time
+                            :datetime="project.date"
+                            class="text-sm text-slate-500 dark:text-slate-400"
+                        >
+                            {{ new Date(project.date).toLocaleDateString() }}
+                        </time>
+                    </template>
+                </ClientOnly>
             </header>
 
             <figure
