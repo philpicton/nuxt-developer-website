@@ -188,7 +188,7 @@ function clearFilter() {
                 tag="div"
                 class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8 not-prose"
             >
-                <ProjectCard
+                <ContentProjectCard
                     v-for="project in paginatedProjects"
                     :key="project.path"
                     :project="project as ProjectItem"

@@ -78,7 +78,7 @@ useSeoMeta({
         <hr />
 
         <div class="flex justify-between items-center mt-8 not-prose">
-            <BackButton to="/projects">Back to Projects</BackButton>
+            <ContentBackButton to="/projects">Back to Projects</ContentBackButton>
         </div>
     </div>
 </template>

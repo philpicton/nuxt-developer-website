@@ -1,8 +1,0 @@
-- hydration mismatch -dates
-- security policy issues
-- rethink colours/theme- particularly light mode.
-- port good bits back to my site
-- spec kit?
-- backticks are appearing in the content
-- placeholder images
-- look at the page transitions and the mobile menu close animation

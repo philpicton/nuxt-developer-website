@@ -18,7 +18,7 @@ describe("Contact Page", () => {
             route: "/contact",
         });
 
-        expect(wrapper.findComponent({ name: "ContactForm" }).exists()).toBe(
+        expect(wrapper.findComponent({ name: "MainContactForm" }).exists()).toBe(
             true,
         );
     });

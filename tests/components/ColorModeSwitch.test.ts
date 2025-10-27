@@ -1,11 +1,11 @@
 // @vitest-environment nuxt
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
-import ColorModeSwitch from "~/components/ColorModeSwitch.vue";
+import MainColorModeSwitch from "~/components/main/MainColorModeSwitch.vue";
 
-describe("ColorModeSwitch", () => {
+describe("MainColorModeSwitch", () => {
     it("renders a button with accessible label", async () => {
-        const wrapper = await mountSuspended(ColorModeSwitch);
+        const wrapper = await mountSuspended(MainColorModeSwitch);
         const button = wrapper.find("button");
 
         expect(button.exists()).toBe(true);

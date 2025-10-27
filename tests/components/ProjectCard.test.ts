@@ -1,10 +1,10 @@
 // @vitest-environment nuxt
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
-import ProjectCard from "~/components/ProjectCard.vue";
+import ContentProjectCard from "~/components/content/ContentProjectCard.vue";
 import type { ProjectItem } from "~/types/types";
 
-describe("ProjectCard", () => {
+describe("ContentProjectCard", () => {
     const mockProject = {
         title: "Test Project",
         description: "A test project description that is quite detailed",
@@ -17,7 +17,7 @@ describe("ProjectCard", () => {
     } as ProjectItem;
 
     it("renders project card with title and description", async () => {
-        const wrapper = await mountSuspended(ProjectCard, {
+        const wrapper = await mountSuspended(ContentProjectCard, {
             props: { project: mockProject },
         });
 
@@ -26,7 +26,7 @@ describe("ProjectCard", () => {
     });
 
     it("renders thumbnail image and links to project", async () => {
-        const wrapper = await mountSuspended(ProjectCard, {
+        const wrapper = await mountSuspended(ContentProjectCard, {
             props: { project: mockProject },
         });
 
@@ -40,7 +40,7 @@ describe("ProjectCard", () => {
     });
 
     it("renders all technology pills", async () => {
-        const wrapper = await mountSuspended(ProjectCard, {
+        const wrapper = await mountSuspended(ContentProjectCard, {
             props: { project: mockProject },
         });
 
@@ -65,7 +65,7 @@ describe("ProjectCard", () => {
             ],
         } as ProjectItem;
 
-        const wrapper = await mountSuspended(ProjectCard, {
+        const wrapper = await mountSuspended(ContentProjectCard, {
             props: { project: projectWithManyTech },
         });
 
@@ -79,7 +79,7 @@ describe("ProjectCard", () => {
             tech: [],
         } as ProjectItem;
 
-        const wrapper = await mountSuspended(ProjectCard, {
+        const wrapper = await mountSuspended(ContentProjectCard, {
             props: { project: projectWithNoTech },
         });
 
@@ -94,7 +94,7 @@ describe("ProjectCard", () => {
                 "This is a very long description that should be truncated by the line-clamp-3 utility class. It goes on and on with lots of text that would take up too much space on the card if it were all shown.",
         } as ProjectItem;
 
-        const wrapper = await mountSuspended(ProjectCard, {
+        const wrapper = await mountSuspended(ContentProjectCard, {
             props: { project: projectWithLongDesc },
         });
 

@@ -71,7 +71,7 @@ describe("Writing Tag Page", () => {
             route: "/writing/tag/vue",
         });
 
-        const blogTags = wrapper.findAllComponents({ name: "BlogTag" });
+        const blogTags = wrapper.findAllComponents({ name: "ContentBlogTag" });
         expect(blogTags.length).toBeGreaterThan(0);
     });
 
@@ -80,7 +80,7 @@ describe("Writing Tag Page", () => {
             route: "/writing/tag/vue",
         });
 
-        expect(wrapper.findComponent({ name: "BackButton" }).exists()).toBe(
+        expect(wrapper.findComponent({ name: "ContentBackButton" }).exists()).toBe(
             true,
         );
     });

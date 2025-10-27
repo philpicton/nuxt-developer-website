@@ -118,7 +118,7 @@ describe("Project Detail Page", () => {
         expect(img.props("src")).toBe(mockProject.heroImage);
         expect(img.props("alt")).toBe(mockProject.title);
 
-        const backButton = wrapper.findComponent({ name: "BackButton" });
+        const backButton = wrapper.findComponent({ name: "ContentBackButton" });
         expect(backButton.exists()).toBe(true);
         expect(backButton.props("to")).toBe("/projects");
     });

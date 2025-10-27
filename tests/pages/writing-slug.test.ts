@@ -52,7 +52,7 @@ describe("Writing Slug Page", () => {
             },
         });
 
-        expect(wrapper.findComponent({ name: "BackButton" }).exists()).toBe(
+        expect(wrapper.findComponent({ name: "ContentBackButton" }).exists()).toBe(
             true,
         );
     });

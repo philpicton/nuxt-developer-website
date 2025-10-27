@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { data: about, pending } = await useAsyncData(() =>
-    queryCollection("pages").path("/about").first(),
+    queryCollection("pages").path("/pages/about").first(),
 );
 
 if (!about.value) {

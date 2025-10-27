@@ -2,7 +2,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { mountSuspended, mockNuxtImport } from "@nuxt/test-utils/runtime";
 import { h } from "vue";
-import BackButton from "~/components/BackButton.vue";
+import ContentBackButton from "~/components/content/ContentBackButton.vue";
 // Create reusable spies
 const push = vi.fn();
 const back = vi.fn();
@@ -17,7 +17,7 @@ mockNuxtImport("useRouter", () => {
     });
 });
 
-describe("BackButton", () => {
+describe("ContentBackButton", () => {
     beforeEach(() => {
         push.mockReset();
         back.mockReset();
@@ -25,7 +25,7 @@ describe("BackButton", () => {
     });
 
     it("renders button with SVG icon and text", async () => {
-        const wrapper = await mountSuspended(BackButton);
+        const wrapper = await mountSuspended(ContentBackButton);
 
         expect(wrapper.find("button").exists()).toBe(true);
         expect(wrapper.find("svg").exists()).toBe(true);
@@ -34,7 +34,7 @@ describe("BackButton", () => {
     });
 
     it("accepts custom slot content", async () => {
-        const wrapper = await mountSuspended(BackButton, {
+        const wrapper = await mountSuspended(ContentBackButton, {
             slots: {
                 default: () => h("span", "Return Home"),
             },
@@ -44,7 +44,7 @@ describe("BackButton", () => {
     });
 
     it("navigates to specified path when 'to' prop is provided", async () => {
-        const wrapper = await mountSuspended(BackButton, {
+        const wrapper = await mountSuspended(ContentBackButton, {
             props: { to: "/writing" },
         });
 
@@ -54,7 +54,7 @@ describe("BackButton", () => {
     });
 
     it("navigates back in history when no 'to' prop provided", async () => {
-        const wrapper = await mountSuspended(BackButton, {
+        const wrapper = await mountSuspended(ContentBackButton, {
             props: {},
         });
 

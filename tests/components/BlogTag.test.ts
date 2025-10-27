@@ -1,11 +1,11 @@
 // @vitest-environment nuxt
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
-import BlogTag from "~/components/content/BlogTag.vue";
+import ContentBlogTag from "~/components/content/ContentBlogTag.vue";
 
-describe("BlogTag", () => {
+describe("ContentBlogTag", () => {
     it("renders NuxtLink with tag text", async () => {
-        const wrapper = await mountSuspended(BlogTag, {
+        const wrapper = await mountSuspended(ContentBlogTag, {
             props: { text: "vue" },
         });
 
@@ -14,7 +14,7 @@ describe("BlogTag", () => {
     });
 
     it("generates correct URL path from text prop", async () => {
-        const wrapper = await mountSuspended(BlogTag, {
+        const wrapper = await mountSuspended(ContentBlogTag, {
             props: { text: "javascript" },
         });
 
@@ -23,7 +23,7 @@ describe("BlogTag", () => {
     });
 
     it("updates URL when text prop changes", async () => {
-        const wrapper = await mountSuspended(BlogTag, {
+        const wrapper = await mountSuspended(ContentBlogTag, {
             props: { text: "before" },
         });
 

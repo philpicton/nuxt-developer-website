@@ -1,9 +1,9 @@
 // @vitest-environment nuxt
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
-import BlogPostsList from "~/components/BlogPostsList.vue";
+import ContentBlogPostsList from "~/components/content/ContentBlogPostsList.vue";
 
-describe("BlogPostsList", () => {
+describe("ContentBlogPostsList", () => {
     const mockPosts = [
         {
             title: "Test Post 1",
@@ -20,7 +20,7 @@ describe("BlogPostsList", () => {
     ];
 
     it("renders correct number of posts with titles and descriptions", async () => {
-        const wrapper = await mountSuspended(BlogPostsList, {
+        const wrapper = await mountSuspended(ContentBlogPostsList, {
             props: { posts: mockPosts },
         });
 
@@ -30,11 +30,11 @@ describe("BlogPostsList", () => {
     });
 
     it("renders BlogTag components for each tag", async () => {
-        const wrapper = await mountSuspended(BlogPostsList, {
+        const wrapper = await mountSuspended(ContentBlogPostsList, {
             props: { posts: mockPosts },
         });
 
-        const blogTags = wrapper.findAllComponents({ name: "BlogTag" });
+        const blogTags = wrapper.findAllComponents({ name: "ContentBlogTag" });
         const totalTags = mockPosts.reduce(
             (sum, post) => sum + post.tags.length,
             0,
@@ -44,7 +44,7 @@ describe("BlogPostsList", () => {
     });
 
     it("creates NuxtLinks with correct paths", async () => {
-        const wrapper = await mountSuspended(BlogPostsList, {
+        const wrapper = await mountSuspended(ContentBlogPostsList, {
             props: { posts: mockPosts },
         });
 
@@ -56,7 +56,7 @@ describe("BlogPostsList", () => {
     });
 
     it("handles empty posts array", async () => {
-        const wrapper = await mountSuspended(BlogPostsList, {
+        const wrapper = await mountSuspended(ContentBlogPostsList, {
             props: { posts: [] },
         });
 

@@ -19,7 +19,7 @@ defineProps<{
                 <br />
                 <small>{{ description }}</small>
                 <br />
-                <BlogTag v-for="tag in tags" :key="tag" :text="tag" />
+                <ContentBlogTag v-for="tag in tags" :key="tag" :text="tag" />
                 <br />
             </li>
         </ul>

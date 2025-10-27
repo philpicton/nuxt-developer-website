@@ -74,7 +74,7 @@ describe("Projects Index Page", () => {
             "Filter by technology:",
         );
 
-        const cards = wrapper.findAllComponents({ name: "ProjectCard" });
+        const cards = wrapper.findAllComponents({ name: "ContentProjectCard" });
         expect(cards.length).toBe(3);
     });
 
@@ -109,7 +109,7 @@ describe("Projects Index Page", () => {
             route: "/projects",
         });
 
-        const cards = wrapper.findAllComponents({ name: "ProjectCard" });
+        const cards = wrapper.findAllComponents({ name: "ContentProjectCard" });
         const firstCard = cards[0];
         expect(firstCard.props("project")).toBeDefined();
         expect(firstCard.props("project").heroImage).toBeDefined();

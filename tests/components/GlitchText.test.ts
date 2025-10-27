@@ -2,11 +2,11 @@
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
 import { h } from "vue";
-import GlitchText from "~/components/GlitchText.vue";
+import MainGlitchText from "~/components/main/MainGlitchText.vue";
 
-describe("GlitchText", () => {
+describe("MainGlitchText", () => {
     it("renders slot content correctly", async () => {
-        const wrapper = await mountSuspended(GlitchText, {
+        const wrapper = await mountSuspended(MainGlitchText, {
             slots: {
                 default: () => h("h1", "Glitch Effect"),
             },
@@ -17,7 +17,7 @@ describe("GlitchText", () => {
     });
 
     it("preserves HTML attributes in slotted content", async () => {
-        const wrapper = await mountSuspended(GlitchText, {
+        const wrapper = await mountSuspended(MainGlitchText, {
             slots: {
                 default: () =>
                     h(

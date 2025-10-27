@@ -30,7 +30,7 @@ useSeoMeta({
             v-else-if="post"
             class="prose-code:before:content-none prose-code:after:content-none"
         >
-            <BlogTag v-for="tag in post.tags" :key="tag" :text="tag"></BlogTag>
+            <ContentBlogTag v-for="tag in post.tags" :key="tag" :text="tag"></ContentBlogTag>
             <div>
                 <h2>{{ post.title }}</h2>
                 <small>{{
@@ -46,6 +46,6 @@ useSeoMeta({
             <ContentRenderer :value="post.body" />
         </article>
         <hr />
-        <BackButton to="/writing"></BackButton>
+        <ContentBackButton to="/writing"></ContentBackButton>
     </div>
 </template>

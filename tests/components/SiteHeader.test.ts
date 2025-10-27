@@ -1,11 +1,11 @@
 // @vitest-environment nuxt
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
-import SiteHeader from "~/components/SiteHeader.vue";
+import MainSiteHeader from "~/components/main/MainSiteHeader.vue";
 
-describe("SiteHeader", () => {
+describe("MainSiteHeader", () => {
     it("renders nav with expected navigation links", async () => {
-        const wrapper = await mountSuspended(SiteHeader);
+        const wrapper = await mountSuspended(MainSiteHeader);
         const expectedLinks = [
             "home",
             "about",
@@ -21,15 +21,15 @@ describe("SiteHeader", () => {
     });
 
     it("includes ColorModeSwitch component", async () => {
-        const wrapper = await mountSuspended(SiteHeader);
+        const wrapper = await mountSuspended(MainSiteHeader);
 
         expect(
-            wrapper.findComponent({ name: "ColorModeSwitch" }).exists(),
+            wrapper.findComponent({ name: "MainColorModeSwitch" }).exists(),
         ).toBe(true);
     });
 
     it("has mobile menu toggle functionality", async () => {
-        const wrapper = await mountSuspended(SiteHeader);
+        const wrapper = await mountSuspended(MainSiteHeader);
         const buttons = wrapper.findAll("button");
         const menuButton = buttons.find(
             (btn) => btn.attributes("aria-label") === "Main menu",
@@ -49,7 +49,7 @@ describe("SiteHeader", () => {
     });
 
     it("closes menu when navigation link is clicked", async () => {
-        const wrapper = await mountSuspended(SiteHeader);
+        const wrapper = await mountSuspended(MainSiteHeader);
         const buttons = wrapper.findAll("button");
         const menuButton = buttons.find(
             (btn) => btn.attributes("aria-label") === "Main menu",

@@ -46,7 +46,7 @@ if (!posts.value || posts.value.length === 0) {
                 >
                 <p class="mt-2 text-gray-700">{{ post.description }}</p>
                 <div class="mt-2">
-                    <BlogTag
+                    <ContentBlogTag
                         v-for="t in post.tags"
                         :key="t"
                         :text="t"
@@ -56,6 +56,6 @@ if (!posts.value || posts.value.length === 0) {
             </li>
         </ul>
         <hr />
-        <BackButton to="/writing"></BackButton>
+        <ContentBackButton to="/writing"></ContentBackButton>
     </div>
 </template>

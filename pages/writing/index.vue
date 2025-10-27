@@ -63,7 +63,7 @@ function goToPage(page: number) {
             ></div>
         </div>
         <template v-else>
-            <BlogPostsList
+            <ContentBlogPostsList
                 v-if="paginatedPosts && paginatedPosts.length > 0"
                 :posts="paginatedPosts"
             />
