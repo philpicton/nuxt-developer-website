@@ -43,7 +43,7 @@ useSeoMeta({
                 }}</small>
             </div>
             <hr />
-            <ContentRenderer :value="post.body" />
+            <ContentSectionRenderer :value="post.body" />
         </article>
         <hr />
         <ContentBackButton to="/writing"></ContentBackButton>

@@ -25,6 +25,8 @@ useSeoMeta({
                 aria-label="Loading content"
             ></div>
         </div>
-        <ContentRenderer v-else-if="about" :value="about" />
+        <article v-else-if="about">
+            <ContentSectionRenderer :value="about" />
+        </article>
     </div>
 </template>

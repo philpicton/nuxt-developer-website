@@ -105,9 +105,10 @@ describe("Project Detail Page", () => {
     it("displays formatted date consistently with blog posts", async () => {
         const wrapper = await mountSuspended(ProjectSlug, mountOptions);
 
-        const dateElement = wrapper.find("small");
+        const dateElement = wrapper.find("time");
         expect(dateElement.exists()).toBe(true);
         expect(dateElement.text()).toBe("Monday, 15 January 2024");
+        expect(dateElement.attributes("datetime")).toBe("2024-01-15");
     });
 
     it("renders hero image and back button", async () => {

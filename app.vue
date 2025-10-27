@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const colorMode = useColorMode();
 const themeColorLight = "#e2e8f0"; // slate-300
 const themeColorDark = "#0f172a"; // slate-900

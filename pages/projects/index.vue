@@ -105,17 +105,18 @@ function clearFilter() {
 </script>
 
 <template>
-    <section>
-        <div class="mb-6">
+    <article>
+        <header class="mb-6">
             <h1>Projects</h1>
             <p class="text-slate-600 dark:text-slate-300">
                 A selection of my projects<br />
             </p>
-        </div>
+        </header>
         <hr />
 
         <!-- Search/Filter Section -->
-        <div
+        <form
+            role="search"
             class="my-6 flex flex-col sm:flex-row gap-3 items-start sm:items-center"
         >
             <label for="tech-filter" class="text-sm font-medium flex-shrink-0">
@@ -155,7 +156,7 @@ function clearFilter() {
                     <Icon name="formkit:close" size="20" />
                 </button>
             </div>
-        </div>
+        </form>
 
         <!-- Results count -->
         <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">
@@ -181,7 +182,7 @@ function clearFilter() {
         </div>
 
         <!-- Projects Grid -->
-        <template v-else>
+        <section v-else>
             <TransitionGroup
                 v-if="paginatedProjects && paginatedProjects.length > 0"
                 name="project-list"
@@ -202,7 +203,11 @@ function clearFilter() {
             </p>
 
             <!-- Pagination controls -->
-            <div v-if="totalPages > 1" class="flex justify-center gap-2 mt-8">
+            <nav
+                v-if="totalPages > 1"
+                aria-label="Pagination"
+                class="flex justify-center gap-2 mt-8"
+            >
                 <button
                     :disabled="currentPage === 1"
                     class="w-10 h-10 border rounded disabled:opacity-50 flex items-center justify-center transition-colors hover:bg-slate-100 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:focus:ring-0"
@@ -235,9 +240,9 @@ function clearFilter() {
                 >
                     <Icon name="formkit:stepforward" size="24" />
                 </button>
-            </div>
-        </template>
-    </section>
+            </nav>
+        </section>
+    </article>
 </template>
 
 <style scoped>

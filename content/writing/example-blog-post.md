@@ -5,8 +5,6 @@ date: "2024-01-10"
 tags: ["example", "markdown", "blogging"]
 ---
 
-# Example Blog Post
-
 This is an example blog post to demonstrate the markdown rendering capabilities of this template.
 
 ## Markdown Features

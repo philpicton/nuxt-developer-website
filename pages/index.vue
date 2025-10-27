@@ -33,6 +33,6 @@ useSeoMeta({
                 aria-label="Loading content"
             ></div>
         </div>
-        <ContentRenderer v-else-if="home" :value="home" />
+        <ContentSectionRenderer v-else-if="home" :value="home" />
     </div>
 </template>

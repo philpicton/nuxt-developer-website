@@ -7,8 +7,6 @@ image: "/images/projects/example-2.jpg"
 featured: true
 ---
 
-# Example Project Two
-
 ## Project Description
 
 Replace this with details about another one of your projects. Showcase different skills and technologies.

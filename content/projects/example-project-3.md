@@ -7,8 +7,6 @@ image: "/images/projects/example-3.jpg"
 featured: false
 ---
 
-# Example Project Three
-
 ## Introduction
 
 This is a third example project. Having multiple projects shows the breadth of your experience.

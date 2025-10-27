@@ -8,8 +8,6 @@ thumb: "/images/projects/example-1.jpg"
 featured: true
 ---
 
-# Example Project One
-
 ## Overview
 
 This is an example project entry. Replace this with a description of one of your actual projects.

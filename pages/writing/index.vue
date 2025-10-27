@@ -70,7 +70,7 @@ function goToPage(page: number) {
             <p v-else>Sorry, nothing found.</p>
 
             <!-- Pagination controls -->
-            <div class="flex justify-center gap-2 mt-6">
+            <nav aria-label="Pagination" class="flex justify-center gap-2 mt-6">
                 <button
                     :disabled="currentPage === 1"
                     class="w-10 h-10 border rounded disabled:opacity-50 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-green-500 disabled:focus:ring-0 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
@@ -103,7 +103,7 @@ function goToPage(page: number) {
                     <Icon name="formkit:stepforward" size="24" />
                     <span class="sr-only">Next page</span>
                 </button>
-            </div>
+            </nav>
         </template>
     </section>
 </template>

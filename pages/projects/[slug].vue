@@ -26,11 +26,8 @@ useSeoMeta({
                 aria-label="Loading project"
             ></div>
         </div>
-        <article
-            v-else-if="project"
-            class="prose-code:before:content-none prose-code:after:content-none"
-        >
-            <div class="mb-8">
+        <article v-else-if="project">
+            <header class="mb-8">
                 <h1 class="mb-3">{{ project.title }}</h1>
                 <p class="text-xl text-slate-600 dark:text-slate-300 mb-4">
                     {{ project.description }}
@@ -46,7 +43,10 @@ useSeoMeta({
                     </span>
                 </div>
 
-                <small class="text-slate-500 dark:text-slate-400">
+                <time
+                    :datetime="project.date"
+                    class="text-sm text-slate-500 dark:text-slate-400"
+                >
                     {{
                         new Date(project.date).toLocaleDateString("en-GB", {
                             weekday: "long",
@@ -55,10 +55,10 @@ useSeoMeta({
                             day: "numeric",
                         })
                     }}
-                </small>
-            </div>
+                </time>
+            </header>
 
-            <div
+            <figure
                 v-if="project.heroImage || project.thumbnail"
                 class="not-prose mb-8 rounded-lg overflow-hidden shadow-lg ring-1 ring-slate-200 dark:ring-slate-700 group p-0.5"
             >
@@ -68,17 +68,20 @@ useSeoMeta({
                     class="w-full h-auto mx-auto rounded-lg"
                     loading="lazy"
                 />
-            </div>
+            </figure>
 
             <hr />
 
-            <ContentRenderer :value="project.body" class="my-8" />
+            <ContentSectionRenderer :value="project.body" class="my-8" />
+
+            <footer class="mt-8 not-prose">
+                <hr class="mb-8" />
+                <nav aria-label="Project navigation">
+                    <ContentBackButton to="/projects"
+                        >Back to Projects</ContentBackButton
+                    >
+                </nav>
+            </footer>
         </article>
-
-        <hr />
-
-        <div class="flex justify-between items-center mt-8 not-prose">
-            <ContentBackButton to="/projects">Back to Projects</ContentBackButton>
-        </div>
     </div>
 </template>

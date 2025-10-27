@@ -7,8 +7,8 @@ defineProps<{
 </script>
 
 <template>
-    <nav>
-        <ul class="list-none pl-0">
+    <div>
+        <ul class="list-none pl-0" aria-label="Blog posts">
             <li v-for="{ title, path, description, tags } in posts" :key="path">
                 <NuxtLink
                     :to="path"
@@ -23,5 +23,5 @@ defineProps<{
                 <br />
             </li>
         </ul>
-    </nav>
+    </div>
 </template>
