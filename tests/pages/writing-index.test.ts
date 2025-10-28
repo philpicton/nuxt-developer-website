@@ -49,7 +49,9 @@ describe("Writing Index Page", () => {
         });
 
         // BlogPostsList should exist when posts are present
-        const blogPostsList = wrapper.findComponent({ name: "ContentBlogPostsList" });
+        const blogPostsList = wrapper.findComponent({
+            name: "ContentBlogPostsList",
+        });
         expect(blogPostsList.exists()).toBe(true);
 
         // Verify the posts prop is passed correctly

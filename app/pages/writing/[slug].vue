@@ -30,7 +30,11 @@ useSeoMeta({
             v-else-if="post"
             class="prose-code:before:content-none prose-code:after:content-none"
         >
-            <ContentBlogTag v-for="tag in post.tags" :key="tag" :text="tag"></ContentBlogTag>
+            <ContentBlogTag
+                v-for="tag in post.tags"
+                :key="tag"
+                :text="tag"
+            ></ContentBlogTag>
             <div>
                 <h2>{{ post.title }}</h2>
                 <ClientOnly>

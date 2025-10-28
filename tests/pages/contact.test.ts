@@ -18,8 +18,8 @@ describe("Contact Page", () => {
             route: "/contact",
         });
 
-        expect(wrapper.findComponent({ name: "MainContactForm" }).exists()).toBe(
-            true,
-        );
+        expect(
+            wrapper.findComponent({ name: "MainContactForm" }).exists(),
+        ).toBe(true);
     });
 });

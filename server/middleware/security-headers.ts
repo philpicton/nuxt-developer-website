@@ -29,6 +29,8 @@ export default defineEventHandler((event) => {
             "font-src 'self' https://fonts.gstatic.com data:",
             // Allow images from self, data URIs, HTTPS sources, and blob for image optimization
             "img-src 'self' data: https: blob:",
+            // Allow workers with blob: for Vite/Nuxt HMR and other workers
+            "worker-src 'self' blob:",
             // Allow connections for API, Iconify CDN (for @nuxt/icon), and DevTools in dev
             isDevelopment
                 ? "connect-src 'self' ws://localhost:* wss://localhost:* https://api.resend.com https://api.iconify.design https://api.simplesvg.com"

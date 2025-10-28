@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ProjectItem } from "~/types/types";
+import type { ProjectItem } from "~~/types/types";
 
 useSeoMeta({
     title: "Projects",

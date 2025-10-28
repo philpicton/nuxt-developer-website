@@ -1,5 +1,5 @@
 import { defineEventHandler, readBody, getHeader, getRequestIP } from "h3";
-import type { MailApiResponse } from "~/types/types";
+import type { MailApiResponse } from "~~/types/types";
 
 type MailOptions = {
     from: string;

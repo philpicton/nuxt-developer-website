@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { MailApiResponse } from "~/types/types";
+import type { MailApiResponse } from "~~/types/types";
 
 // Data -------------------
 const contactForm = reactive({

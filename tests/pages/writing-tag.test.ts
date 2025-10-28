@@ -80,8 +80,8 @@ describe("Writing Tag Page", () => {
             route: "/writing/tag/vue",
         });
 
-        expect(wrapper.findComponent({ name: "ContentBackButton" }).exists()).toBe(
-            true,
-        );
+        expect(
+            wrapper.findComponent({ name: "ContentBackButton" }).exists(),
+        ).toBe(true);
     });
 });

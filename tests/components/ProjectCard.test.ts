@@ -2,7 +2,7 @@
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
 import ContentProjectCard from "~/components/content/ContentProjectCard.vue";
-import type { ProjectItem } from "~/types/types";
+import type { ProjectItem } from "~~/types/types";
 
 describe("ContentProjectCard", () => {
     const mockProject = {

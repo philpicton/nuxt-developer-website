@@ -13,7 +13,7 @@ interface Props {
      * The parsed content object from Nuxt Content
      * Must contain a body property with the rendered content tree
      */
-    value: any;
+    value: object;
     /**
      * Optional additional CSS classes to apply to the article element
      */
@@ -34,14 +34,14 @@ const props = withDefaults(defineProps<Props>(), {
 const isValidContent = computed(() => {
     if (!props.value) return false;
 
+    const val = props.value as Record<string, unknown>;
     // Content from Nuxt Content can be:
     // 1. An object with a body property (full content object)
     // 2. A body object itself with type property (rendered content tree)
     // 3. A parsed AST with children array
-    if (props.value.body) return true;
-    if (props.value.type) return true;
-    if (props.value.children && Array.isArray(props.value.children))
-        return true;
+    if (val.body) return true;
+    if (val.type) return true;
+    if (val.children && Array.isArray(val.children)) return true;
 
     return false;
 });
@@ -59,8 +59,9 @@ const errorMessage = computed(() => {
 // Get the actual content to render
 const contentValue = computed(() => {
     if (!isValidContent.value) return null;
+    const val = props.value as Record<string, unknown>;
     // If value has a body property, use it; otherwise assume value is the body
-    return props.value.body || props.value;
+    return val.body || props.value;
 });
 </script>
 
@@ -89,7 +90,7 @@ const contentValue = computed(() => {
         </div>
 
         <!-- Content -->
-        <ContentRenderer v-else :value="contentValue" />
+        <ContentRenderer v-else-if="contentValue" :value="contentValue" />
     </section>
 </template>
 

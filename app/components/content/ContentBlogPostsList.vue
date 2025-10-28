@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlogPostList } from "~/types/types";
+import type { BlogPostList } from "~~/types/types";
 
 defineProps<{
     posts: BlogPostList;

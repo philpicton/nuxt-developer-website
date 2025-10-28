@@ -6,8 +6,8 @@
     "type": "module",
     "scripts": {
         "lint": "eslint .",
-        "format": "prettier --write \"{components,pages,plugins,middleware,layouts,composables,assets,server,types,content}/**/*.{js,jsx,ts,tsx,vue,html,css,scss,json,md}\"",
-        "format:check": "prettier --check \"{components,pages,plugins,middleware,layouts,composables,assets,server,types,content}/**/*.{js,jsx,ts,tsx,vue,html,css,scss,json,md}\"",
+        "format": "prettier --write \"{app,server,tests,types}/**/*.{js,jsx,ts,tsx,vue,html,css,scss,json,md}\"",
+        "format:check": "prettier --check \"{app,server,tests,types}/**/*.{js,jsx,ts,tsx,vue,html,css,scss,json,md}\"",
         "typecheck": "nuxt typecheck",
         "build": "nuxt build",
         "dev": "nuxt dev",
@@ -33,7 +33,7 @@
         "@unhead/vue": "^2.0.17",
         "better-sqlite3": "12.4.1",
         "eslint": "^9.36.0",
-        "nuxt": "^3.19.2",
+        "nuxt": "^4.0.0",
         "tailwindcss": "^4.1.14",
         "vue": "^3.5.22",
         "vue-router": "^4.5.1"
