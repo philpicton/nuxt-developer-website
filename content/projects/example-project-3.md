@@ -2,9 +2,9 @@
 title: "Example Project Three"
 description: "A third sample project for your portfolio"
 date: "2023-11-20"
-tags: ["full-stack", "nodejs", "database"]
-image: "/images/projects/example-3.jpg"
-featured: false
+tech: ["full-stack", "nodejs", "database"]
+heroImage: "/images/projects/placeholder.png"
+thumbnail: "/images/projects/placeholder.png"
 ---
 
 ## Introduction

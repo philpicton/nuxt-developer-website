@@ -2,9 +2,9 @@
 title: "Example Project Two"
 description: "Another sample project demonstrating frontend expertise"
 date: "2023-12-15"
-tags: ["react", "javascript", "api"]
-image: "/images/projects/example-2.jpg"
-featured: true
+tech: ["react", "javascript", "api"]
+heroImage: "/images/projects/placeholder.png"
+thumbnail: "/images/projects/placeholder.png"
 ---
 
 ## Project Description

@@ -39,6 +39,7 @@ console.log(greet("World"));
 ### Links and Images
 
 You can add [links](https://nuxt.com) and images to your posts.
+![image example](https://placehold.co/600x400?text=Hello\nWorld "Placeholder Image")
 
 ### Blockquotes
 
