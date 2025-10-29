@@ -49,5 +49,10 @@ export default defineNuxtConfig({
             subsets: ["latin"],
         },
     },
+    icon: {
+        serverBundle: {
+            collections: ["formkit"],
+        },
+    },
     ssr: true, // enable server-side rendering at build time
 });

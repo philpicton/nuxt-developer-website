@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 
 export default defineVitestConfig({
     test: {
+        environment: "nuxt",
         environmentOptions: {
             nuxt: {
                 rootDir: fileURLToPath(new URL("./", import.meta.url)),
