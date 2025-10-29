@@ -190,6 +190,7 @@ describe("ContentSectionRenderer", () => {
         let consoleWarnSpy: ReturnType<typeof vi.spyOn>;
 
         beforeEach(() => {
+            // @ts-expect-error - Vitest spy type inference issue with console.warn
             consoleWarnSpy = vi
                 .spyOn(console, "warn")
                 .mockImplementation(() => {});
