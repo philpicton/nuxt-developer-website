@@ -1,7 +1,8 @@
 # Frontend Developer Website Template
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)](https://www.typescriptlang.org/)
-[![Nuxt](https://img.shields.io/badge/Nuxt-3.0-00DC82?logo=nuxt.js)](https://nuxt.com)
+[![Nuxt](https://img.shields.io/badge/Nuxt-4?logo=nuxt.js)](https://nuxt.com)
+[![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)]
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A production-ready website template for frontend developers built with Nuxt 4, TypeScript, and Tailwind CSS. Features a blog, portfolio showcase, contact form with email integration, and automated CI/CD. Deploy to Cloudflare Workers via NuxtHub.
