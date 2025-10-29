@@ -26,6 +26,7 @@ if (!posts.value || posts.value.length === 0) {
 <template>
     <div>
         <h1 class="mb-4 text-3xl font-bold">Posts tagged with "{{ tag }}"</h1>
+        <hr />
         <div v-if="pending" class="flex justify-center py-12">
             <div
                 class="animate-spin h-8 w-8 border-4 border-loading border-t-transparent rounded-full"
@@ -33,28 +34,10 @@ if (!posts.value || posts.value.length === 0) {
                 aria-label="Loading posts"
             ></div>
         </div>
-        <ul v-else-if="posts && posts.length > 0">
-            <li
-                v-for="post in posts"
-                :key="post.path"
-                class="mb-6 border-b pb-4 last:border-0"
-            >
-                <NuxtLink
-                    :to="post.path"
-                    class="text-2xl font-semibold text-green-600 hover:underline"
-                    >{{ post.title }}</NuxtLink
-                >
-                <p class="mt-2 text-gray-700">{{ post.description }}</p>
-                <div class="mt-2">
-                    <ContentBlogTag
-                        v-for="t in post.tags"
-                        :key="t"
-                        :text="t"
-                        class="mr-2"
-                    />
-                </div>
-            </li>
-        </ul>
+        <ContentBlogPostsList
+            v-else-if="posts && posts.length > 0"
+            :posts="posts"
+        />
         <hr />
         <ContentBackButton to="/writing"></ContentBackButton>
     </div>
