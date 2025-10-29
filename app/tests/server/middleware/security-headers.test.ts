@@ -1,5 +1,5 @@
 // @vitest-environment nuxt
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, beforeEach, afterEach } from "vitest";
 
 describe("security-headers middleware", () => {
     let originalEnv: string | undefined;
@@ -102,4 +102,3 @@ describe("security-headers middleware", () => {
         expect(connectSrc).toContain("https://api.simplesvg.com");
     });
 });
-

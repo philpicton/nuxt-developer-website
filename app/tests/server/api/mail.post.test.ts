@@ -1,5 +1,5 @@
 // @vitest-environment nuxt
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect } from "vitest";
 
 describe("mail.post API endpoint logic", () => {
     describe("Input Validation Logic", () => {
@@ -57,7 +57,7 @@ describe("mail.post API endpoint logic", () => {
         });
 
         it("escapes quotes", () => {
-            expect(escapeHtml('"Hello" and \'World\'')).toBe(
+            expect(escapeHtml("\"Hello\" and 'World'")).toBe(
                 "&quot;Hello&quot; and &#039;World&#039;",
             );
         });
@@ -108,4 +108,3 @@ describe("mail.post API endpoint logic", () => {
         });
     });
 });
-

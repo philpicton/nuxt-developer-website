@@ -1,5 +1,5 @@
 // @vitest-environment nuxt
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
 import ContentSectionRenderer from "~/components/content/ContentSectionRenderer.vue";
 
@@ -187,8 +187,21 @@ describe("ContentSectionRenderer", () => {
     });
 
     describe("Error Handling", () => {
+        let consoleWarnSpy: ReturnType<typeof vi.spyOn>;
+
+        beforeEach(() => {
+            consoleWarnSpy = vi
+                .spyOn(console, "warn")
+                .mockImplementation(() => {});
+        });
+
+        afterEach(() => {
+            consoleWarnSpy.mockRestore();
+        });
+
         it("shows error message when value is null", async () => {
             const wrapper = await mountSuspended(ContentSectionRenderer, {
+                // @ts-expect-error - Testing error handling with null value
                 props: { value: null },
                 global: {
                     stubs: {
@@ -207,6 +220,7 @@ describe("ContentSectionRenderer", () => {
 
         it("shows error message when value is undefined", async () => {
             const wrapper = await mountSuspended(ContentSectionRenderer, {
+                // @ts-expect-error - Testing error handling with undefined value
                 props: { value: undefined },
                 global: {
                     stubs: {
@@ -241,6 +255,7 @@ describe("ContentSectionRenderer", () => {
 
         it("hides error details by default", async () => {
             const wrapper = await mountSuspended(ContentSectionRenderer, {
+                // @ts-expect-error - Testing error handling with null value
                 props: { value: null },
                 global: {
                     stubs: {
@@ -259,6 +274,7 @@ describe("ContentSectionRenderer", () => {
 
         it("shows error details when showErrorDetails is true", async () => {
             const wrapper = await mountSuspended(ContentSectionRenderer, {
+                // @ts-expect-error - Testing error handling with null value
                 props: { value: null, showErrorDetails: true },
                 global: {
                     stubs: {
@@ -277,6 +293,7 @@ describe("ContentSectionRenderer", () => {
 
         it("applies error styling classes", async () => {
             const wrapper = await mountSuspended(ContentSectionRenderer, {
+                // @ts-expect-error - Testing error handling with null value
                 props: { value: null },
                 global: {
                     stubs: {
@@ -288,8 +305,10 @@ describe("ContentSectionRenderer", () => {
             });
 
             const errorDiv = wrapper.find('[role="alert"]');
-            expect(errorDiv.classes()).toContain("border-red-300");
-            expect(errorDiv.classes()).toContain("dark:border-red-700");
+            expect(errorDiv.classes()).toContain("border-error-border");
+            expect(errorDiv.classes()).toContain("dark:border-error");
+            expect(errorDiv.classes()).toContain("bg-error-bg");
+            expect(errorDiv.classes()).toContain("rounded");
         });
     });
 

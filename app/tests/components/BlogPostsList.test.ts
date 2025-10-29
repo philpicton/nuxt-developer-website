@@ -51,7 +51,7 @@ describe("ContentBlogPostsList", () => {
         const listItems = wrapper.findAll("li");
         listItems.forEach((item, index) => {
             const link = item.findComponent({ name: "NuxtLink" });
-            expect(link.props("to")).toBe(mockPosts[index].path);
+            expect(link.props("to")).toBe(mockPosts[index]?.path);
         });
     });
 

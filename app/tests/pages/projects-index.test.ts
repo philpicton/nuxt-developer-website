@@ -88,6 +88,7 @@ describe("Projects Index Page", () => {
         const select = wrapper.find("select#tech-filter");
         const options = select.findAll("option");
         expect(options.length).toBeGreaterThan(1);
+        // @ts-expect-error - Vue Test Utils types don't handle optional chaining well
         expect(options[0].text()).toBe("All technologies");
     });
 
@@ -111,8 +112,12 @@ describe("Projects Index Page", () => {
 
         const cards = wrapper.findAllComponents({ name: "ContentProjectCard" });
         const firstCard = cards[0];
+        expect(firstCard).toBeDefined();
+        // @ts-expect-error - Testing project props structure
         expect(firstCard.props("project")).toBeDefined();
+        // @ts-expect-error - Testing project props structure
         expect(firstCard.props("project").heroImage).toBeDefined();
+        // @ts-expect-error - Testing project props structure
         expect(firstCard.props("project").thumbnail).toBeDefined();
     });
 });
