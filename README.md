@@ -7,6 +7,8 @@
 
 A production-ready website template for frontend developers built with Nuxt 4, TypeScript, and Tailwind CSS. Features a blog, portfolio showcase, contact form with email integration, and automated CI/CD. Deploy to Cloudflare Workers via NuxtHub.
 
+Check out the [example live site](https://nuxt-developer-website.philpicton.workers.dev/about)
+
 ## Features
 
 - **Nuxt 4 & TypeScript** - Vue 3 framework with server-side rendering and full type safety
