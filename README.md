@@ -158,20 +158,23 @@ Every push to `main` automatically:
 
 ### Initial Setup
 
-1. **Create NuxtHub Project**
+1. Fork this repository to your GitHub account
+
+2. Check it out locally and set up environment variables in `.env`
+
+3. **Create NuxtHub Project**
     - Visit [hub.nuxt.com](https://hub.nuxt.com)
     - Create new project and link Cloudflare account
-    - Add environment variables in hub settings
+    - Link your GitHub repository in NuxtHub
+    - Add environment variables
+    - Optional add a custom domain in NuxtHub/Cloudflare
 
-2. **Configure GitHub Secrets**
-    - Go to Repository → Settings → Secrets → Actions
-    - Add `NUXTHUB_TOKEN` from hub.nuxt.com
-
-3. **Configure Repository Settings**
+4. **Configure Repository Settings**
     - See [GitHub Settings Guide](.github/GITHUB_SETTINGS.md) for detailed instructions
     - Enable branch protection with required status checks
     - Enable Dependabot for automated dependency updates
     - Configure Actions permissions (read/write)
+    - Push to your `main` branch to trigger deployment (or if you have not added a rule exception for the repo admin, you need to create a PR and merge it to deploy updates.)
 
 ### Manual Deployment
 
