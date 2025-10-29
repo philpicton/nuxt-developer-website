@@ -4,7 +4,7 @@ const date = new Date().getFullYear();
 
 <template>
     <footer class="max-w-2xl mx-auto">
-        <small class="text-text-primary dark:text-white">
+        <small class="text-text-primary dark:text-text-primary-dark">
             © {{ date }} [Your Name]
         </small>
     </footer>

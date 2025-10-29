@@ -10,10 +10,7 @@ defineProps<{
     <div>
         <ul class="list-none pl-0" aria-label="Blog posts">
             <li v-for="{ title, path, description, tags } in posts" :key="path">
-                <NuxtLink
-                    :to="path"
-                    class="transition hover:text-primary-hover dark:hover:text-primary-light focus:outline-none focus:ring-2 focus:ring-primary rounded"
-                >
+                <NuxtLink :to="path">
                     {{ title }}
                 </NuxtLink>
                 <br />

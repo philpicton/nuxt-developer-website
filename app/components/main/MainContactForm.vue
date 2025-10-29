@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// Implements the contact form.
+// I prefer to keep the logic and template in the same file despite
+// the size for better context and easier maintenance.
 import type { MailApiResponse } from "~~/types/types";
 
 // Data -------------------
@@ -55,7 +58,7 @@ const isError = computed(() => {
     );
 });
 
-// Funcs --------------------
+// Functions --------------------
 const isOkResponse = (response: unknown): response is MailApiResponse => {
     return (
         typeof response === "object" &&

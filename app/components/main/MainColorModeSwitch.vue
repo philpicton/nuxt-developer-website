@@ -20,12 +20,12 @@ const ariaLabel = computed(() =>
             <Icon
                 v-if="colorMode.value === 'dark'"
                 name="ph:moon-bold"
-                class="w-5 h-5 dark:text-white dark:hover:text-green-500"
+                class="w-5 h-5 dark:text-white dark:hover:text-primary-dark-hover"
             />
             <Icon
                 v-else
                 name="ph:sun-bold"
-                class="w-5 h-5 dark:text-white dark:hover:text-green-500"
+                class="w-5 h-5 dark:text-white dark:hover:text-primary-dark-hover"
             />
         </ColorScheme>
     </button>

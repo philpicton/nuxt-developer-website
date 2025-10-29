@@ -32,6 +32,7 @@ const open = ref(false);
             aria-label="Main navigation"
         >
             <MainColorModeSwitch></MainColorModeSwitch>
+            <!-- animated svg hamburger button -->
             <button
                 class="text-text-primary dark:text-white inline-flex dark:hover:bg-accent-dark hover:bg-hover-DEFAULT rounded lg:hidden ml-auto stroke-text-primary dark:stroke-white transition-[background-color] focus:outline-none focus:ring-2 focus:ring-primary"
                 aria-label="Main menu"
@@ -86,7 +87,7 @@ const open = ref(false);
 </template>
 
 <style>
-/* Animated hamburger button */
+/* hamburger button animation */
 .line {
     fill: none;
     stroke-width: 6;

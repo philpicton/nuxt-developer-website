@@ -93,19 +93,3 @@ const contentValue = computed(() => {
         <ContentRenderer v-else-if="contentValue" :value="contentValue" />
     </section>
 </template>
-
-<style scoped>
-@reference '../../assets/css/main.css';
-
-/* Override Tailwind Typography's styles for inline code */
-article :deep(code:not(pre *)) {
-    @apply bg-slate-200 dark:bg-slate-900 p-1 rounded font-normal;
-}
-
-/* Style headings with links */
-article :deep(h4 > a),
-article :deep(h3 > a),
-article :deep(h2 > a) {
-    @apply text-slate-800 dark:text-white no-underline;
-}
-</style>

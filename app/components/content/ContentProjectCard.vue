@@ -16,7 +16,7 @@ const isHovered = ref(false);
         @mouseleave="isHovered = false"
     >
         <!-- Thumbnail -->
-        <div
+        <figure
             class="relative aspect-square overflow-hidden bg-hover-DEFAULT dark:bg-accent-dark"
         >
             <NuxtImg
@@ -28,7 +28,7 @@ const isHovered = ref(false);
             <div
                 class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             ></div>
-        </div>
+        </figure>
 
         <!-- Content -->
         <div class="p-4 sm:p-5">
