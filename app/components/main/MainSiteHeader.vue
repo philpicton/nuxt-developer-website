@@ -74,7 +74,7 @@ const open = ref(false);
                     <li v-for="link in links" :key="link.to" class="p-2">
                         <NuxtLink
                             :to="link.to"
-                            class="lg:inline-flex lg:w-auto w-full px-3 py-2 text:gray:800 dark:text-gray-200 items-center justify-center hover:bg-hover-DEFAULT dark:hover:bg-gray-800 dark:hover:text-white transition-all rounded router-link-exact-active:bg-hover-DEFAULT dark:router-link-exact-active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
+                            class="lg:inline-flex lg:w-auto w-full px-3 py-2 text-text-primary dark:text-text-primary-dark items-center justify-center hover:bg-hover-DEFAULT dark:hover:bg-gray-800 dark:hover:text-white transition-all rounded router-link-exact-active:bg-hover-DEFAULT dark:router-link-exact-active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
                             @click="open = false"
                         >
                             <span>{{ link.name }}</span>
