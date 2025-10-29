@@ -1,11 +1,11 @@
 ---
 title: "Hello World - Frontend Developer Template"
-description: "A modern Nuxt 3 website template for frontend developers"
+description: "A modern Nuxt 4 website template for frontend developers"
 ---
 
 # Hi, I'm [Your Name] <span class="wave" id="wave-emoji">👋</span>
 
-Welcome to your new frontend developer website! This is a customizable template built with Nuxt 3.
+Welcome to your new frontend developer website! This is a customizable template built with Nuxt 4.
 
 I'm a [Your Role/Title] from [Your Location]. I specialize in [Your Specializations].
 
@@ -15,7 +15,7 @@ I work with technologies like [HTML](https://developer.mozilla.org/en-US/docs/We
 
 Replace this content with your own introduction! Edit `content/home.md` to customize this page.
 
-### What to customize:
+### What to customize
 
 - **This page** - Your introduction and bio
 - **About page** - Your detailed background story

@@ -4,11 +4,11 @@
 [![Nuxt](https://img.shields.io/badge/Nuxt-3.0-00DC82?logo=nuxt.js)](https://nuxt.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A production-ready website template for frontend developers built with Nuxt 3, TypeScript, and Tailwind CSS. Features a blog, portfolio showcase, contact form with email integration, and automated CI/CD. Deploy to Cloudflare Workers via NuxtHub.
+A production-ready website template for frontend developers built with Nuxt 4, TypeScript, and Tailwind CSS. Features a blog, portfolio showcase, contact form with email integration, and automated CI/CD. Deploy to Cloudflare Workers via NuxtHub.
 
 ## Features
 
-- **Nuxt 3 & TypeScript** - Vue 3 framework with server-side rendering and full type safety
+- **Nuxt 4 & TypeScript** - Vue 3 framework with server-side rendering and full type safety
 - **Bun** - Fast JavaScript runtime and package manager
 - **Tailwind CSS v4** - Utility-first CSS framework with dark mode support
 - **Nuxt Content** - Markdown-powered blog and portfolio with tag system
@@ -244,7 +244,7 @@ Tests run automatically in CI/CD and block merges/deployments if failing.
 
 | Category      | Technology                   |
 | ------------- | ---------------------------- |
-| **Framework** | Nuxt 3, Vue 3                |
+| **Framework** | Nuxt 4, Vue 3                |
 | **Language**  | TypeScript (strict mode)     |
 | **Runtime**   | Bun                          |
 | **Styling**   | Tailwind CSS v4              |
@@ -273,4 +273,4 @@ Issues and pull requests welcome, fork and create a branch, then a PR. All code 
 
 ---
 
-Built with Nuxt 3 • Deploy on Cloudflare Workers via NuxtHub
+Built with Nuxt 4 • Deploy on Cloudflare Workers via NuxtHub

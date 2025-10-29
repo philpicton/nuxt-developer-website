@@ -29,7 +29,9 @@ useSeoMeta({
         <article v-else-if="project">
             <header class="mb-8">
                 <h1 class="mb-3">{{ project.title }}</h1>
-                <p class="text-xl text-text-secondary dark:text-text-muted mb-4">
+                <p
+                    class="text-xl text-text-secondary dark:text-text-muted mb-4"
+                >
                     {{ project.description }}
                 </p>
 

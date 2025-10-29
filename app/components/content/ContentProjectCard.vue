@@ -17,7 +17,7 @@ const isHovered = ref(false);
     >
         <!-- Thumbnail -->
         <figure
-            class="relative aspect-square overflow-hidden bg-hover-DEFAULT dark:bg-accent-dark"
+            class="relative aspect-square overflow-hidden bg-hover-dark dark:bg-accent-dark"
         >
             <NuxtImg
                 :src="project.thumbnail"
@@ -51,7 +51,7 @@ const isHovered = ref(false);
                 <span
                     v-for="tech in project.tech"
                     :key="tech"
-                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-hover-DEFAULT dark:bg-accent-dark text-text-secondary dark:text-text-muted transition-all duration-200 group-hover:bg-primary/10 dark:group-hover:bg-primary/30 group-hover:text-primary-dark dark:group-hover:text-primary-light"
+                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-hover-mid dark:bg-accent-dark text-text-secondary dark:text-text-muted transition-all duration-200 group-hover:bg-primary/10 dark:group-hover:bg-primary/30 group-hover:text-primary-dark dark:group-hover:text-primary-light"
                 >
                     {{ tech }}
                 </span>

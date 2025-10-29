@@ -13,7 +13,7 @@ This is an example project entry. Replace this with a description of one of your
 
 ## Technologies Used
 
-- **Frontend**: Vue.js, Nuxt 3, TypeScript
+- **Frontend**: Vue.js, Nuxt 4, TypeScript
 - **Styling**: Tailwind CSS
 - **Deployment**: Cloudflare Workers
 

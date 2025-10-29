@@ -31,12 +31,13 @@
 
     /* Border colors */
     --color-border-light: #e2e8f0; /* slate-200 */
-    --color-border-DEFAULT: #cbd5e1; /* slate-300 */
+    --color-border-mid: #cbd5e1; /* slate-300 */
     --color-border-dark: #334155; /* slate-700 */
 
     /* Interactive states */
     --color-hover-light: #f1f5f9; /* slate-100 */
-    --color-hover-DEFAULT: #e2e8f0; /* slate-200 */
+    --color-hover-mid: #cbd5e1; /* slate-300 */
+    --color-hover-dark: #1e293b; /* slate-800 */
 
     /* Utility colors */
     --color-loading: #16a34a;

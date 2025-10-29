@@ -126,7 +126,7 @@ function clearFilter() {
                 <select
                     id="tech-filter"
                     v-model="searchTech"
-                    class="flex-1 px-3 py-2 rounded border border-border-DEFAULT dark:border-accent-dark-hover bg-card-bg dark:bg-accent-dark text-text-primary dark:text-white transition-colors focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none h-10"
+                    class="flex-1 px-3 py-2 rounded border border-border-mid dark:border-accent-dark-hover bg-card-bg dark:bg-accent-dark text-text-primary dark:text-white transition-colors focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none h-10"
                     aria-label="Filter projects by technology"
                 >
                     <option value="">All technologies</option>
@@ -139,7 +139,7 @@ function clearFilter() {
                     </option>
                 </select>
                 <button
-                    class="w-10 h-10 rounded border border-border-DEFAULT dark:border-accent-dark-hover bg-hover-DEFAULT dark:bg-accent-dark transition-all disabled:opacity-0 disabled:cursor-default flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary"
+                    class="w-10 h-10 rounded border border-border-mid dark:border-accent-dark-hover bg-hover-dark dark:bg-accent-dark transition-all disabled:opacity-0 disabled:cursor-default flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary"
                     :disabled="!searchTech"
                     :class="
                         searchTech

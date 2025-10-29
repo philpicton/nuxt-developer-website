@@ -5,7 +5,7 @@ import IndexPage from "~/pages/index.vue";
 
 const mockHome = {
     title: "Hello World - Frontend Developer Template",
-    description: "A modern Nuxt 3 website template for frontend developers",
+    description: "A modern Nuxt website template for frontend developers",
     body: { type: "root", children: [] },
 };
 
