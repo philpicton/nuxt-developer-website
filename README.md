@@ -1,14 +1,17 @@
 # Frontend Developer Website Template
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)](https://www.typescriptlang.org/)
-[![Nuxt](https://img.shields.io/badge/Nuxt-3.0-00DC82?logo=nuxt.js)](https://nuxt.com)
+[![Nuxt 4](https://img.shields.io/badge/Nuxt-4-00DC82?logo=nuxt.js&logoColor=white)](https://nuxt.com)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A production-ready website template for frontend developers built with Nuxt 3, TypeScript, and Tailwind CSS. Features a blog, portfolio showcase, contact form with email integration, and automated CI/CD. Deploy to Cloudflare Workers via NuxtHub.
+A production-ready website template for frontend developers built with Nuxt 4, TypeScript, and Tailwind CSS. Features a blog, portfolio showcase, contact form with email integration, and automated CI/CD. Deploy to Cloudflare Workers via NuxtHub.
+
+Check out the [example live site](https://nuxt-developer-website.philpicton.workers.dev/about)
 
 ## Features
 
-- **Nuxt 3 & TypeScript** - Vue 3 framework with server-side rendering and full type safety
+- **Nuxt 4 & TypeScript** - Vue 3 framework with server-side rendering and full type safety
 - **Bun** - Fast JavaScript runtime and package manager
 - **Tailwind CSS v4** - Utility-first CSS framework with dark mode support
 - **Nuxt Content** - Markdown-powered blog and portfolio with tag system
@@ -158,20 +161,23 @@ Every push to `main` automatically:
 
 ### Initial Setup
 
-1. **Create NuxtHub Project**
+1. Fork this repository to your GitHub account
+
+2. Check it out locally and set up environment variables in `.env`
+
+3. **Create NuxtHub Project**
     - Visit [hub.nuxt.com](https://hub.nuxt.com)
     - Create new project and link Cloudflare account
-    - Add environment variables in hub settings
+    - Link your GitHub repository in NuxtHub
+    - Add environment variables
+    - Optional add a custom domain in NuxtHub/Cloudflare
 
-2. **Configure GitHub Secrets**
-    - Go to Repository → Settings → Secrets → Actions
-    - Add `NUXTHUB_TOKEN` from hub.nuxt.com
-
-3. **Configure Repository Settings**
+4. **Configure Repository Settings**
     - See [GitHub Settings Guide](.github/GITHUB_SETTINGS.md) for detailed instructions
     - Enable branch protection with required status checks
     - Enable Dependabot for automated dependency updates
     - Configure Actions permissions (read/write)
+    - Push to your `main` branch to trigger deployment (or if you have not added a rule exception for the repo admin, you need to create a PR and merge it to deploy updates.)
 
 ### Manual Deployment
 
@@ -244,7 +250,7 @@ Tests run automatically in CI/CD and block merges/deployments if failing.
 
 | Category      | Technology                   |
 | ------------- | ---------------------------- |
-| **Framework** | Nuxt 3, Vue 3                |
+| **Framework** | Nuxt 4, Vue 3                |
 | **Language**  | TypeScript (strict mode)     |
 | **Runtime**   | Bun                          |
 | **Styling**   | Tailwind CSS v4              |
@@ -273,4 +279,4 @@ Issues and pull requests welcome, fork and create a branch, then a PR. All code 
 
 ---
 
-Built with Nuxt 3 • Deploy on Cloudflare Workers via NuxtHub
+Built with Nuxt 4 • Deploy on Cloudflare Workers via NuxtHub

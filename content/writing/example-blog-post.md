@@ -5,8 +5,6 @@ date: "2024-01-10"
 tags: ["example", "markdown", "blogging"]
 ---
 
-# Example Blog Post
-
 This is an example blog post to demonstrate the markdown rendering capabilities of this template.
 
 ## Markdown Features
@@ -41,6 +39,7 @@ console.log(greet("World"));
 ### Links and Images
 
 You can add [links](https://nuxt.com) and images to your posts.
+![image example](https://placehold.co/600x400?text=Hello\nWorld "Placeholder Image")
 
 ### Blockquotes
 

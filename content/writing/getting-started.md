@@ -5,8 +5,6 @@ date: "2024-01-15"
 tags: ["nuxt", "template", "tutorial"]
 ---
 
-# Getting Started with This Template
-
 Welcome to your new frontend developer website! This post will guide you through the customization process.
 
 ## Quick Start

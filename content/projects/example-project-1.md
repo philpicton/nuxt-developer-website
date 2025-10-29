@@ -3,12 +3,9 @@ title: "Example Project One"
 description: "A sample project showcasing web development skills"
 date: "2024-01-01"
 tech: ["vue", "nuxt", "typescript"]
-hero: "/images/projects/example-1.jpg"
-thumb: "/images/projects/example-1.jpg"
-featured: true
+heroImage: "/images/projects/placeholder.png"
+thumbnail: "/images/projects/placeholder.png"
 ---
-
-# Example Project One
 
 ## Overview
 
@@ -16,7 +13,7 @@ This is an example project entry. Replace this with a description of one of your
 
 ## Technologies Used
 
-- **Frontend**: Vue.js, Nuxt 3, TypeScript
+- **Frontend**: Vue.js, Nuxt 4, TypeScript
 - **Styling**: Tailwind CSS
 - **Deployment**: Cloudflare Workers
 

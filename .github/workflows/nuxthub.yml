@@ -2,208 +2,208 @@ name: Deploy to NuxtHub
 on: push
 
 jobs:
-  # Run quality checks before deploying
-  quality-checks:
-    name: "Code Quality Checks"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    # Run quality checks before deploying
+    quality-checks:
+        name: "Code Quality Checks"
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v5
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
+            - name: Setup Bun
+              uses: oven-sh/setup-bun@v2
+              with:
+                  bun-version: latest
 
-      - name: Install dependencies
-        run: bun install
+            - name: Install dependencies
+              run: bun install
 
-      - name: Run ESLint
-        id: eslint
-        run: |
-          echo "::group::Running ESLint..."
-          if ! bun run lint; then
-            echo "::endgroup::"
-            echo "::error::❌ ESLint check failed!"
-            echo ""
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            echo "❌ DEPLOYMENT BLOCKED: LINTING FAILED"
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            echo ""
-            echo "⚠️  Deployment cancelled - linting errors must be fixed first!"
-            echo ""
-            echo "🔧 To fix locally:"
-            echo "   1. Run: bun run lint"
-            echo "   2. Fix the errors shown above"
-            echo "   3. Commit and push the fixes"
-            echo ""
-            echo "💡 Some errors can be auto-fixed:"
-            echo "   Run: bunx eslint . --fix"
-            echo ""
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            exit 1
-          fi
-          echo "::endgroup::"
-          echo "✅ ESLint passed"
+            - name: Run ESLint
+              id: eslint
+              run: |
+                  echo "::group::Running ESLint..."
+                  if ! bun run lint; then
+                    echo "::endgroup::"
+                    echo "::error::❌ ESLint check failed!"
+                    echo ""
+                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                    echo "❌ DEPLOYMENT BLOCKED: LINTING FAILED"
+                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                    echo ""
+                    echo "⚠️  Deployment cancelled - linting errors must be fixed first!"
+                    echo ""
+                    echo "🔧 To fix locally:"
+                    echo "   1. Run: bun run lint"
+                    echo "   2. Fix the errors shown above"
+                    echo "   3. Commit and push the fixes"
+                    echo ""
+                    echo "💡 Some errors can be auto-fixed:"
+                    echo "   Run: bunx eslint . --fix"
+                    echo ""
+                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                    exit 1
+                  fi
+                  echo "::endgroup::"
+                  echo "✅ ESLint passed"
 
-      - name: Check code formatting
-        id: prettier
-        run: |
-          echo "::group::Checking code formatting..."
-          if ! bun run format:check; then
-            echo "::endgroup::"
-            echo "::error::❌ Code formatting check failed!"
-            echo ""
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            echo "❌ DEPLOYMENT BLOCKED: FORMATTING FAILED"
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            echo ""
-            echo "⚠️  Deployment cancelled - code must be properly formatted!"
-            echo ""
-            echo "🔧 To fix locally:"
-            echo "   1. Run: bun run format"
-            echo "   2. Review the changes"
-            echo "   3. Commit with: git add . && git commit -m 'chore: format code'"
-            echo "   4. Push: git push"
-            echo ""
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            exit 1
-          fi
-          echo "::endgroup::"
-          echo "✅ Formatting check passed"
+            - name: Check code formatting
+              id: prettier
+              run: |
+                  echo "::group::Checking code formatting..."
+                  if ! bun run format:check; then
+                    echo "::endgroup::"
+                    echo "::error::❌ Code formatting check failed!"
+                    echo ""
+                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                    echo "❌ DEPLOYMENT BLOCKED: FORMATTING FAILED"
+                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                    echo ""
+                    echo "⚠️  Deployment cancelled - code must be properly formatted!"
+                    echo ""
+                    echo "🔧 To fix locally:"
+                    echo "   1. Run: bun run format"
+                    echo "   2. Review the changes"
+                    echo "   3. Commit with: git add . && git commit -m 'chore: format code'"
+                    echo "   4. Push: git push"
+                    echo ""
+                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                    exit 1
+                  fi
+                  echo "::endgroup::"
+                  echo "✅ Formatting check passed"
 
-      - name: TypeScript type checking
-        id: typecheck
-        run: |
-          echo "::group::Running TypeScript type check..."
-          if ! bun run typecheck; then
-            echo "::endgroup::"
-            echo "::error::❌ TypeScript type check failed!"
-            echo ""
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            echo "❌ DEPLOYMENT BLOCKED: TYPE CHECK FAILED"
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            echo ""
-            echo "⚠️  Deployment cancelled - type errors must be fixed first!"
-            echo ""
-            echo "🔧 To fix locally:"
-            echo "   1. Run: bun run typecheck"
-            echo "   2. Review and fix the type errors shown above"
-            echo "   3. Commit and push the fixes"
-            echo ""
-            echo "💡 Common type errors:"
-            echo "   - Missing type annotations"
-            echo "   - Type mismatches"
-            echo "   - Missing imports"
-            echo ""
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            exit 1
-          fi
-          echo "::endgroup::"
-          echo "✅ Type check passed"
+            - name: TypeScript type checking
+              id: typecheck
+              run: |
+                  echo "::group::Running TypeScript type check..."
+                  if ! bun run typecheck; then
+                    echo "::endgroup::"
+                    echo "::error::❌ TypeScript type check failed!"
+                    echo ""
+                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                    echo "❌ DEPLOYMENT BLOCKED: TYPE CHECK FAILED"
+                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                    echo ""
+                    echo "⚠️  Deployment cancelled - type errors must be fixed first!"
+                    echo ""
+                    echo "🔧 To fix locally:"
+                    echo "   1. Run: bun run typecheck"
+                    echo "   2. Review and fix the type errors shown above"
+                    echo "   3. Commit and push the fixes"
+                    echo ""
+                    echo "💡 Common type errors:"
+                    echo "   - Missing type annotations"
+                    echo "   - Type mismatches"
+                    echo "   - Missing imports"
+                    echo ""
+                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                    exit 1
+                  fi
+                  echo "::endgroup::"
+                  echo "✅ Type check passed"
 
-      - name: Run unit tests
-        id: test
-        run: |
-          echo "::group::Running unit tests..."
-          if ! bun run test -- --run; then
-            echo "::endgroup::"
-            echo "::error::❌ Unit tests failed!"
-            echo ""
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            echo "❌ DEPLOYMENT BLOCKED: TESTS FAILED"
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            echo ""
-            echo "⚠️  Deployment cancelled - tests must pass before deploying!"
-            echo ""
-            echo "🔧 To fix locally:"
-            echo "   1. Run: bun run test"
-            echo "   2. Review the failing tests"
-            echo "   3. Fix the issues in your code"
-            echo "   4. Commit and push the fixes"
-            echo ""
-            echo "💡 Tips:"
-            echo "   - Run 'bun run test -- --watch' for development"
-            echo "   - All tests must pass before production deployment"
-            echo ""
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            exit 1
-          fi
-          echo "::endgroup::"
-          echo "✅ All tests passed"
+            - name: Run unit tests
+              id: test
+              run: |
+                  echo "::group::Running unit tests..."
+                  if ! bun run test -- --run; then
+                    echo "::endgroup::"
+                    echo "::error::❌ Unit tests failed!"
+                    echo ""
+                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                    echo "❌ DEPLOYMENT BLOCKED: TESTS FAILED"
+                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                    echo ""
+                    echo "⚠️  Deployment cancelled - tests must pass before deploying!"
+                    echo ""
+                    echo "🔧 To fix locally:"
+                    echo "   1. Run: bun run test"
+                    echo "   2. Review the failing tests"
+                    echo "   3. Fix the issues in your code"
+                    echo "   4. Commit and push the fixes"
+                    echo ""
+                    echo "💡 Tips:"
+                    echo "   - Run 'bun run test -- --watch' for development"
+                    echo "   - All tests must pass before production deployment"
+                    echo ""
+                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                    exit 1
+                  fi
+                  echo "::endgroup::"
+                  echo "✅ All tests passed"
 
-      - name: Pre-deployment Summary
-        if: always()
-        run: |
-          echo "## 🔍 Pre-Deployment Quality Checks" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          if [ "${{ steps.eslint.outcome }}" == "success" ]; then
-            echo "✅ **Linting**: Passed" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ **Linting**: Failed - Deployment blocked" >> $GITHUB_STEP_SUMMARY
-          fi
-          if [ "${{ steps.prettier.outcome }}" == "success" ]; then
-            echo "✅ **Formatting**: Passed" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ **Formatting**: Failed - Deployment blocked" >> $GITHUB_STEP_SUMMARY
-          fi
-          if [ "${{ steps.typecheck.outcome }}" == "success" ]; then
-            echo "✅ **Type Check**: Passed" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ **Type Check**: Failed - Deployment blocked" >> $GITHUB_STEP_SUMMARY
-          fi
-          if [ "${{ steps.test.outcome }}" == "success" ]; then
-            echo "✅ **Unit Tests**: Passed" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ **Unit Tests**: Failed - Deployment blocked" >> $GITHUB_STEP_SUMMARY
-          fi
-          echo "" >> $GITHUB_STEP_SUMMARY
-          if [ "${{ steps.eslint.outcome }}" == "success" ] && [ "${{ steps.prettier.outcome }}" == "success" ] && [ "${{ steps.typecheck.outcome }}" == "success" ] && [ "${{ steps.test.outcome }}" == "success" ]; then
-            echo "✅ **All checks passed!** Proceeding with deployment..." >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ **Deployment blocked!** Fix the issues above before deploying." >> $GITHUB_STEP_SUMMARY
-          fi
+            - name: Pre-deployment Summary
+              if: always()
+              run: |
+                  echo "## 🔍 Pre-Deployment Quality Checks" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  if [ "${{ steps.eslint.outcome }}" == "success" ]; then
+                    echo "✅ **Linting**: Passed" >> $GITHUB_STEP_SUMMARY
+                  else
+                    echo "❌ **Linting**: Failed - Deployment blocked" >> $GITHUB_STEP_SUMMARY
+                  fi
+                  if [ "${{ steps.prettier.outcome }}" == "success" ]; then
+                    echo "✅ **Formatting**: Passed" >> $GITHUB_STEP_SUMMARY
+                  else
+                    echo "❌ **Formatting**: Failed - Deployment blocked" >> $GITHUB_STEP_SUMMARY
+                  fi
+                  if [ "${{ steps.typecheck.outcome }}" == "success" ]; then
+                    echo "✅ **Type Check**: Passed" >> $GITHUB_STEP_SUMMARY
+                  else
+                    echo "❌ **Type Check**: Failed - Deployment blocked" >> $GITHUB_STEP_SUMMARY
+                  fi
+                  if [ "${{ steps.test.outcome }}" == "success" ]; then
+                    echo "✅ **Unit Tests**: Passed" >> $GITHUB_STEP_SUMMARY
+                  else
+                    echo "❌ **Unit Tests**: Failed - Deployment blocked" >> $GITHUB_STEP_SUMMARY
+                  fi
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  if [ "${{ steps.eslint.outcome }}" == "success" ] && [ "${{ steps.prettier.outcome }}" == "success" ] && [ "${{ steps.typecheck.outcome }}" == "success" ] && [ "${{ steps.test.outcome }}" == "success" ]; then
+                    echo "✅ **All checks passed!** Proceeding with deployment..." >> $GITHUB_STEP_SUMMARY
+                  else
+                    echo "❌ **Deployment blocked!** Fix the issues above before deploying." >> $GITHUB_STEP_SUMMARY
+                  fi
 
-  deploy:
-    name: "Deploy to NuxtHub"
-    runs-on: ubuntu-latest
-    needs: quality-checks
-    permissions:
-      contents: read
-      id-token: write
+    deploy:
+        name: "Deploy to NuxtHub"
+        runs-on: ubuntu-latest
+        needs: quality-checks
+        permissions:
+            contents: read
+            id-token: write
 
-    steps:
-      - uses: actions/checkout@v4
+        steps:
+            - uses: actions/checkout@v5
 
-      - name: Install Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
+            - name: Install Bun
+              uses: oven-sh/setup-bun@v2
+              with:
+                  bun-version: latest
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
+            - name: Install Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 22
 
-      - name: Install dependencies
-        run: bun install
+            - name: Install dependencies
+              run: bun install
 
-      - name: Ensure NuxtHub module is installed
-        run: bunx nuxthub@latest ensure
+            - name: Ensure NuxtHub module is installed
+              run: bunx nuxthub@latest ensure
 
-      - name: Build & Deploy to NuxtHub
-        uses: nuxt-hub/action@v2
-        with:
-          project-key: philpicton-dev-koz6
+            - name: Build & Deploy to NuxtHub
+              uses: nuxt-hub/action@v2
+              with:
+                  project-key: nuxt-developer--ecjn
 
-      - name: Deployment Summary
-        if: success()
-        run: |
-          echo "## 🚀 Deployment Successful" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "✅ All quality checks passed" >> $GITHUB_STEP_SUMMARY
-          echo "✅ Deployed to NuxtHub" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Project:** philpicton-dev-koz6" >> $GITHUB_STEP_SUMMARY
-          echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
-          echo "**Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+            - name: Deployment Summary
+              if: success()
+              run: |
+                  echo "## 🚀 Deployment Successful" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "✅ All quality checks passed" >> $GITHUB_STEP_SUMMARY
+                  echo "✅ Deployed to NuxtHub" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "**Project:** philpicton-dev-koz6" >> $GITHUB_STEP_SUMMARY
+                  echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+                  echo "**Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY

@@ -1,9 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { defineNuxtConfig } from "nuxt/config";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
-    compatibilityDate: "2024-11-01",
+    compatibilityDate: "2025-10-28",
     devtools: { enabled: true },
     css: ["~/assets/css/main.css"],
     vite: {
@@ -49,6 +48,9 @@ export default defineNuxtConfig({
             styles: ["normal"],
             subsets: ["latin"],
         },
+    },
+    icon: {
+        serverBundle: "local",
     },
     ssr: true, // enable server-side rendering at build time
 });
