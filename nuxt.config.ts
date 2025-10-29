@@ -50,9 +50,7 @@ export default defineNuxtConfig({
         },
     },
     icon: {
-        serverBundle: {
-            collections: ["formkit"],
-        },
+        serverBundle: "local",
     },
     ssr: true, // enable server-side rendering at build time
 });
