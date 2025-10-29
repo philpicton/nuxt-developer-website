@@ -19,13 +19,13 @@ useSeoMeta({
         <main class="flex flex-col items-center justify-center min-h-[60vh]">
             <MainGlitchText>
                 <h1
-                    class="text-4xl md:text-6xl font-bold text-red-600 dark:text-red-400 mb-4"
+                    class="text-4xl md:text-6xl font-bold text-error dark:text-red-400 mb-4"
                 >
                     Error {{ error?.statusCode }}
                 </h1>
             </MainGlitchText>
             <p
-                class="text-lg text-gray-700 dark:text-gray-300 mb-8 text-center max-w-md"
+                class="text-lg text-text-secondary dark:text-text-muted mb-8 text-center max-w-md"
             >
                 {{ error?.message || "An unexpected error occurred." }}
             </p>

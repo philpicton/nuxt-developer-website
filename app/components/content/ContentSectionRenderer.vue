@@ -75,15 +75,15 @@ const contentValue = computed(() => {
         <!-- Error state -->
         <div
             v-if="!isValidContent"
-            class="p-4 rounded border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20"
+            class="p-4 rounded border border-error-border dark:border-error bg-error-bg dark:bg-red-900/20"
             role="alert"
         >
-            <p class="font-semibold text-red-800 dark:text-red-400">
+            <p class="font-semibold text-error-text dark:text-red-400">
                 Sorry. Something went wrong trying to render this content.
             </p>
             <p
                 v-if="showErrorDetails"
-                class="text-sm text-red-700 dark:text-red-300 mt-1"
+                class="text-sm text-error dark:text-red-300 mt-1"
             >
                 {{ errorMessage }}
             </p>

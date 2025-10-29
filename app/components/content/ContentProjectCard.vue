@@ -11,13 +11,13 @@ const isHovered = ref(false);
 <template>
     <NuxtLink
         :to="project.path"
-        class="group block bg-white dark:bg-slate-800 rounded-lg overflow-hidden shadow-md ring-1 ring-slate-200 dark:ring-slate-700 transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
+        class="group block bg-card-bg dark:bg-card-bg-dark rounded-lg overflow-hidden shadow-md ring-1 ring-border-light dark:ring-border-dark transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-neutral-bg-dark"
         @mouseenter="isHovered = true"
         @mouseleave="isHovered = false"
     >
         <!-- Thumbnail -->
         <div
-            class="relative aspect-square overflow-hidden bg-slate-200 dark:bg-slate-700"
+            class="relative aspect-square overflow-hidden bg-hover-DEFAULT dark:bg-accent-dark"
         >
             <NuxtImg
                 :src="project.thumbnail"
@@ -34,14 +34,14 @@ const isHovered = ref(false);
         <div class="p-4 sm:p-5">
             <!-- Title -->
             <h3
-                class="text-lg sm:text-xl font-semibold text-slate-900 dark:text-white mb-2 transition-colors group-hover:text-green-700 dark:group-hover:text-green-400 line-clamp-2"
+                class="text-lg sm:text-xl font-semibold text-text-primary dark:text-white mb-2 transition-colors group-hover:text-primary-hover dark:group-hover:text-primary-light line-clamp-2"
             >
                 {{ project.title }}
             </h3>
 
             <!-- Description -->
             <p
-                class="text-sm text-slate-600 dark:text-slate-300 mb-4 line-clamp-3"
+                class="text-sm text-text-secondary dark:text-text-muted mb-4 line-clamp-3"
             >
                 {{ project.description }}
             </p>
@@ -51,7 +51,7 @@ const isHovered = ref(false);
                 <span
                     v-for="tech in project.tech"
                     :key="tech"
-                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all duration-200 group-hover:bg-green-100 dark:group-hover:bg-green-900/30 group-hover:text-green-800 dark:group-hover:text-green-400"
+                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-hover-DEFAULT dark:bg-accent-dark text-text-secondary dark:text-text-muted transition-all duration-200 group-hover:bg-primary/10 dark:group-hover:bg-primary/30 group-hover:text-primary-dark dark:group-hover:text-primary-light"
                 >
                     {{ tech }}
                 </span>

@@ -21,14 +21,14 @@ useSeoMeta({
     <div>
         <div class="flex justify-center items-center py-12 mb-8">
             <h1
-                class="text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-green-400 to-cyan-400 text-center"
+                class="text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary-light to-cyan-400 text-center"
             >
                 Hello World
             </h1>
         </div>
         <div v-if="pending" class="flex justify-center py-12">
             <div
-                class="animate-spin h-8 w-8 border-4 border-green-500 border-t-transparent rounded-full"
+                class="animate-spin h-8 w-8 border-4 border-loading border-t-transparent rounded-full"
                 role="status"
                 aria-label="Loading content"
             ></div>

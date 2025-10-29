@@ -138,7 +138,7 @@ const handleSubmit = async () => {
                     nameError && validateName ? 'name-error' : undefined
                 "
                 :class="[
-                    'px-2 py-2 rounded-lg bg-inherit border-2 focus:ring-1 focus:ring-green-600 dark:focus:ring-green-600 focus:border-green-600 dark:focus:border-green-600',
+                    'px-2 py-2 rounded-lg bg-inherit border-2 focus:ring-1 focus:ring-primary dark:focus:ring-primary focus:border-primary dark:focus:border-primary',
                     { error: nameError && validateName },
                 ]"
                 @blur="validateName = true"
@@ -147,7 +147,7 @@ const handleSubmit = async () => {
                 id="name-error"
                 role="alert"
                 aria-live="polite"
-                class="text-red-500 text-sm my-0!"
+                class="text-error-light text-sm my-0!"
             >
                 <transition name="fade" mode="out-in">
                     <span v-if="nameError && validateName">{{
@@ -168,7 +168,7 @@ const handleSubmit = async () => {
                     emailError && validateEmail ? 'email-error' : undefined
                 "
                 :class="[
-                    'px-2 py-2 rounded-lg bg-inherit border-2 focus:ring-1 focus:ring-green-600 dark:focus:ring-green-600 focus:border-green-600 dark:focus:border-green-600',
+                    'px-2 py-2 rounded-lg bg-inherit border-2 focus:ring-1 focus:ring-primary dark:focus:ring-primary focus:border-primary dark:focus:border-primary',
                     { error: emailError && validateEmail },
                 ]"
                 @blur="validateEmail = true"
@@ -177,7 +177,7 @@ const handleSubmit = async () => {
                 id="email-error"
                 role="alert"
                 aria-live="polite"
-                class="text-red-500 text-sm my-0!"
+                class="text-error-light text-sm my-0!"
             >
                 <transition name="fade" mode="out-in">
                     <span v-if="emailError && validateEmail">{{
@@ -198,7 +198,7 @@ const handleSubmit = async () => {
                     phoneError && validatePhone ? 'phone-error' : undefined
                 "
                 :class="[
-                    'px-2 py-2 rounded-lg bg-inherit border-2 focus:ring-1 focus:ring-green-600 dark:focus:ring-green-600 focus:border-green-600 dark:focus:border-green-600',
+                    'px-2 py-2 rounded-lg bg-inherit border-2 focus:ring-1 focus:ring-primary dark:focus:ring-primary focus:border-primary dark:focus:border-primary',
                     { error: phoneError && validatePhone },
                 ]"
                 @blur="validatePhone = true"
@@ -207,7 +207,7 @@ const handleSubmit = async () => {
                 id="phone-error"
                 role="alert"
                 aria-live="polite"
-                class="text-red-500 text-sm my-0!"
+                class="text-error-light text-sm my-0!"
             >
                 <transition name="fade" mode="out-in">
                     <span v-if="phoneError && validatePhone">{{
@@ -235,19 +235,19 @@ const handleSubmit = async () => {
                 cols="30"
                 rows="10"
                 placeholder="your message"
-                class="px-2 py-2 rounded-lg bg-inherit border-2 focus:ring-1 focus:ring-green-600 dark:focus:ring-green-600 focus:border-green-600 dark:focus:border-green-600"
+                class="px-2 py-2 rounded-lg bg-inherit border-2 focus:ring-1 focus:ring-primary dark:focus:ring-primary focus:border-primary dark:focus:border-primary"
             />
             <br />
             <div class="w-full text-center">
                 <button
                     :disabled="isError || loading"
-                    class="text-white bg-green-700 w-[50%] py-2 px-4 font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 hover:shadow-xl hover:opacity-75 ease-in-out duration-300 flex flex-row items-center justify-center mx-auto mt-5 disabled:opacity-40 disabled:cursor-not-allowed disabled:focus:ring-0"
+                    class="text-white bg-primary-hover w-[50%] py-2 px-4 font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-primary hover:shadow-xl hover:opacity-75 ease-in-out duration-300 flex flex-row items-center justify-center mx-auto mt-5 disabled:opacity-40 disabled:cursor-not-allowed disabled:focus:ring-0"
                     @click.stop.prevent="handleSubmit"
                 >
                     <svg
                         v-if="loading"
                         role="status"
-                        class="w-7 h-7 text-green-600 animate-spin fill-white"
+                        class="w-7 h-7 text-primary animate-spin fill-white"
                         viewBox="0 0 100 101"
                         xmlns="http://www.w3.org/2000/svg"
                     >
@@ -273,7 +273,7 @@ const handleSubmit = async () => {
                 <nuxt-link
                     to="/"
                     tag="a"
-                    class="text-green-700 underline focus:outline-none focus:ring-2 focus:ring-green-500 rounded"
+                    class="text-primary-hover underline focus:outline-none focus:ring-2 focus:ring-primary rounded"
                     >Home</nuxt-link
                 >
             </div>
@@ -319,18 +319,5 @@ const handleSubmit = async () => {
     60% {
         transform: translate3d(4px, 0, 0);
     }
-}
-/* Change autocomplete styles in WebKit in dark mode */
-.dark-mode input:-webkit-autofill,
-.dark-mode input:-webkit-autofill:hover,
-.dark-mode input:-webkit-autofill:focus,
-.dark-mode textarea:-webkit-autofill,
-.dark-mode textarea:-webkit-autofill:hover,
-.dark-mode textarea:-webkit-autofill:focus,
-.dark-mode select:-webkit-autofill,
-.dark-mode select:-webkit-autofill:hover,
-.dark-mode select:-webkit-autofill:focus {
-    -webkit-text-fill-color: white;
-    transition: background-color 5000s ease-in-out 0s;
 }
 </style>

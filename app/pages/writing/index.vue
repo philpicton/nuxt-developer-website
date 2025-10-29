@@ -57,7 +57,7 @@ function goToPage(page: number) {
 
         <div v-if="pending" class="flex justify-center py-12">
             <div
-                class="animate-spin h-8 w-8 border-4 border-green-500 border-t-transparent rounded-full"
+                class="animate-spin h-8 w-8 border-4 border-loading border-t-transparent rounded-full"
                 role="status"
                 aria-label="Loading posts"
             ></div>
@@ -86,7 +86,7 @@ function goToPage(page: number) {
                     :aria-current="page === currentPage ? 'page' : undefined"
                     :aria-label="`${page === currentPage ? 'Current page' : 'Go to'} page ${page}`"
                     :class="[
-                        'w-10 h-10 border rounded flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors hover:bg-slate-100 dark:hover:bg-slate-700',
+                        'w-10 h-10 border rounded flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary transition-colors hover:bg-slate-100 dark:hover:bg-slate-700',
                         page === currentPage ? 'text-green-600' : '',
                     ]"
                     @click="goToPage(page)"

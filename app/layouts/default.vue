@@ -1,8 +1,8 @@
 <template>
-    <div class="dark:bg-slate-900 bg-slate-300 min-h-[100vh] transition-all">
+    <div class="dark:bg-neutral-bg-dark bg-neutral-bg min-h-[100vh] transition-all">
         <MainSiteHeader></MainSiteHeader>
         <main
-            class="prose dark:prose-invert prose-slate max-w-2xl px-3 py-7 mx-auto bg-white sm:px-8 sm:shadow dark:bg-slate-800 ring-1 ring-slate-200 dark:ring-slate-700 sm:rounded-lg prose-a:text-green-700 prose-a:hover:text-green-800 dark:prose-a:text-green-400 dark:prose-a:hover:text-green-500"
+            class="prose dark:prose-invert prose-slate max-w-2xl px-3 py-7 mx-auto bg-card-bg sm:px-8 sm:shadow dark:bg-card-bg-dark ring-1 ring-border-light dark:ring-border-dark sm:rounded-lg prose-a:text-primary-hover prose-a:hover:text-primary-dark dark:prose-a:text-primary-light dark:prose-a:hover:text-primary"
         >
             <slot />
         </main>

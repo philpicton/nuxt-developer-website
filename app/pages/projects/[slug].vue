@@ -29,7 +29,7 @@ useSeoMeta({
         <article v-else-if="project">
             <header class="mb-8">
                 <h1 class="mb-3">{{ project.title }}</h1>
-                <p class="text-xl text-slate-600 dark:text-slate-300 mb-4">
+                <p class="text-xl text-text-secondary dark:text-text-muted mb-4">
                     {{ project.description }}
                 </p>
 
@@ -37,7 +37,7 @@ useSeoMeta({
                     <span
                         v-for="tech in project.tech"
                         :key="tech"
-                        class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 ring-1 ring-green-200 dark:ring-green-700"
+                        class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-primary/10 dark:bg-primary/30 text-primary-dark dark:text-primary-light ring-1 ring-primary/20 dark:ring-primary/70"
                     >
                         {{ tech }}
                     </span>
@@ -46,7 +46,7 @@ useSeoMeta({
                 <ClientOnly>
                     <time
                         :datetime="project.date"
-                        class="text-sm text-slate-500 dark:text-slate-400"
+                        class="text-sm text-text-tertiary dark:text-text-tertiary"
                     >
                         {{
                             new Date(project.date).toLocaleDateString("en-GB", {
@@ -60,7 +60,7 @@ useSeoMeta({
                     <template #fallback>
                         <time
                             :datetime="project.date"
-                            class="text-sm text-slate-500 dark:text-slate-400"
+                            class="text-sm text-text-tertiary dark:text-text-tertiary"
                         >
                             {{ new Date(project.date).toLocaleDateString() }}
                         </time>
@@ -70,7 +70,7 @@ useSeoMeta({
 
             <figure
                 v-if="project.heroImage || project.thumbnail"
-                class="not-prose mb-8 rounded-lg overflow-hidden shadow-lg ring-1 ring-slate-200 dark:ring-slate-700 group p-0.5"
+                class="not-prose mb-8 rounded-lg overflow-hidden shadow-lg ring-1 ring-border-light dark:ring-border-dark group p-0.5"
             >
                 <NuxtImg
                     :src="project.heroImage || project.thumbnail"

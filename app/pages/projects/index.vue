@@ -108,7 +108,7 @@ function clearFilter() {
     <article>
         <header class="mb-6">
             <h1>Projects</h1>
-            <p class="text-slate-600 dark:text-slate-300">
+            <p class="text-text-secondary dark:text-text-muted">
                 A selection of my projects<br />
             </p>
         </header>
@@ -126,7 +126,7 @@ function clearFilter() {
                 <select
                     id="tech-filter"
                     v-model="searchTech"
-                    class="flex-1 px-3 py-2 rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white transition-colors focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:outline-none h-10"
+                    class="flex-1 px-3 py-2 rounded border border-border-DEFAULT dark:border-accent-dark-hover bg-card-bg dark:bg-accent-dark text-text-primary dark:text-white transition-colors focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none h-10"
                     aria-label="Filter projects by technology"
                 >
                     <option value="">All technologies</option>
@@ -139,11 +139,11 @@ function clearFilter() {
                     </option>
                 </select>
                 <button
-                    class="w-10 h-10 rounded border border-slate-300 dark:border-slate-600 bg-slate-200 dark:bg-slate-700 transition-all disabled:opacity-0 disabled:cursor-default flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-green-500"
+                    class="w-10 h-10 rounded border border-border-DEFAULT dark:border-accent-dark-hover bg-hover-DEFAULT dark:bg-accent-dark transition-all disabled:opacity-0 disabled:cursor-default flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary"
                     :disabled="!searchTech"
                     :class="
                         searchTech
-                            ? 'hover:bg-slate-300 dark:hover:bg-slate-600'
+                            ? 'hover:bg-accent hover:dark:bg-accent-dark-hover'
                             : 'pointer-events-none'
                     "
                     :aria-label="
@@ -159,7 +159,7 @@ function clearFilter() {
         </form>
 
         <!-- Results count -->
-        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">
+        <p class="text-sm text-text-secondary dark:text-text-tertiary mb-4">
             <template v-if="filteredProjects.length > perPage">
                 Showing {{ perPage }} projects of {{ filteredProjects.length }}
             </template>
@@ -175,7 +175,7 @@ function clearFilter() {
         <!-- Loading state -->
         <div v-if="pending" class="flex justify-center py-12">
             <div
-                class="animate-spin h-8 w-8 border-4 border-green-500 border-t-transparent rounded-full"
+                class="animate-spin h-8 w-8 border-4 border-loading border-t-transparent rounded-full"
                 role="status"
                 aria-label="Loading projects"
             ></div>
@@ -197,7 +197,7 @@ function clearFilter() {
             </TransitionGroup>
             <p
                 v-else
-                class="text-center py-8 text-slate-600 dark:text-slate-400"
+                class="text-center py-8 text-text-secondary dark:text-text-tertiary"
             >
                 No projects found. Try adjusting your filter.
             </p>
@@ -222,7 +222,7 @@ function clearFilter() {
                     :aria-current="page === currentPage ? 'page' : undefined"
                     :aria-label="`${page === currentPage ? 'Current page' : 'Go to'} page ${page}`"
                     :class="[
-                        'w-10 h-10 border rounded transition-colors flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-green-500',
+                        'w-10 h-10 border rounded transition-colors flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary',
                         page === currentPage
                             ? 'text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 border-green-600 dark:border-green-400'
                             : 'hover:bg-slate-100 dark:hover:bg-slate-700',

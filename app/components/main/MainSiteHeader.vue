@@ -33,7 +33,7 @@ const open = ref(false);
         >
             <MainColorModeSwitch></MainColorModeSwitch>
             <button
-                class="text-gray-900 dark:text-white inline-flex dark:hover:bg-slate-700 hover:bg-slate-200 rounded lg:hidden ml-auto stroke-gray-900 dark:stroke-white transition-[background-color] focus:outline-none focus:ring-2 focus:ring-green-500"
+                class="text-text-primary dark:text-white inline-flex dark:hover:bg-accent-dark hover:bg-hover-DEFAULT rounded lg:hidden ml-auto stroke-text-primary dark:stroke-white transition-[background-color] focus:outline-none focus:ring-2 focus:ring-primary"
                 aria-label="Main menu"
                 @click="open = !open"
             >
@@ -73,7 +73,7 @@ const open = ref(false);
                     <li v-for="link in links" :key="link.to" class="p-2">
                         <NuxtLink
                             :to="link.to"
-                            class="lg:inline-flex lg:w-auto w-full px-3 py-2 text:gray:800 dark:text-gray-200 items-center justify-center hover:bg-slate-200 dark:hover:bg-gray-800 dark:hover:text-white transition-all rounded router-link-exact-active:bg-slate-200 dark:router-link-exact-active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500"
+                            class="lg:inline-flex lg:w-auto w-full px-3 py-2 text:gray:800 dark:text-gray-200 items-center justify-center hover:bg-hover-DEFAULT dark:hover:bg-gray-800 dark:hover:text-white transition-all rounded router-link-exact-active:bg-hover-DEFAULT dark:router-link-exact-active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
                             @click="open = false"
                         >
                             <span>{{ link.name }}</span>

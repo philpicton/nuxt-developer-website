@@ -12,7 +12,7 @@ defineProps<{
             <li v-for="{ title, path, description, tags } in posts" :key="path">
                 <NuxtLink
                     :to="path"
-                    class="transition hover:text-green-700 dark:hover:text-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 rounded"
+                    class="transition hover:text-primary-hover dark:hover:text-primary-light focus:outline-none focus:ring-2 focus:ring-primary rounded"
                 >
                     {{ title }}
                 </NuxtLink>

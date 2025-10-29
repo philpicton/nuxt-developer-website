@@ -17,7 +17,7 @@ function goBack() {
 <template>
     <button
         type="button"
-        class="hover:text-green-700 dark:hover:text-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 rounded transition-all"
+        class="hover:text-primary-hover dark:hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary rounded transition-all"
         aria-label="Go back"
         @click="goBack"
     >
