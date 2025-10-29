@@ -140,9 +140,9 @@ touch content/projects/my-project.md
 title: "Project Name"
 description: "Brief description"
 date: "2024-01-01"
-tags: ["tech", "stack"]
-image: "/images/projects/project.jpg"
-featured: true
+tech: ["tech", "stack"]
+heroImage: "/images/projects/placeholder.png"
+thumbnail: "/images/projects/placeholder.png"
 ---
 
 Project details...
