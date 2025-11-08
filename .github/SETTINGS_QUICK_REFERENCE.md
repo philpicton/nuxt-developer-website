@@ -149,6 +149,21 @@ After setup, verify:
 
 ## 🔧 Common Issues & Fixes
 
+### "Status checks not running on Nuxthub deployments"
+
+When you add your GitHub project to NuxtHub, and give NuxtHub write access to your repository, the `nuxthub.yml` file is overwritten by NuxtHub.
+
+**Fix:**
+To re-enable the checks, you need to
+
+1. Pull the changes to your `main` branch down locally `git checkout main && git pull`
+2. Create a new branch from main `git branch re-enable-deployment-checks`
+3. Edit the `nuxthub.yml.example` to add in the `project-key` that NuxtHub just placed in your `nuxthub.yml` file
+4. Delete the `nuxthub.yml` file `rm ./.github/workflows/nuxthub.yml`
+5. Copy over the example file `cp ./.github/workflows/nuxthub.yml.example ./.github/workflows/nuxthub.yml`
+6. Push your changes
+7. Make a PR in GitHub and once the checks have passed, merge it to main.
+
 ### "Auto-merge not working"
 
 **Fix:**
