@@ -1,129 +1,10 @@
 <script setup lang="ts">
-// Implements the contact form.
-// I prefer to keep the logic and template in the same file despite
-// the size for better context and easier maintenance.
-import type { MailApiResponse } from "~~/types/types";
-
-// Data -------------------
-const contactForm = reactive({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-    website: "", // honeypot field
-});
-const validateName = ref(false);
-const validateEmail = ref(false);
-const validatePhone = ref(false);
-const loading = ref(false);
-const resultMessage = ref("");
-
-// Computed --------------------
-const nameError = computed(() => {
-    if (
-        contactForm.name === "" ||
-        contactForm.name.length < 2 ||
-        contactForm.name.length > 100
-    ) {
-        return "Name is required. Max 100 chars";
-    }
-    return "";
-});
-const phoneError = computed(() => {
-    if (
-        contactForm.phone !== "" &&
-        (contactForm.phone.length < 7 || contactForm.phone.length > 20)
-    ) {
-        return "A valid phone number should be between 7 and 20 characters";
-    }
-    return "";
-});
-const emailError = computed(() => {
-    if (
-        !String(contactForm.email)
-            .toLowerCase()
-            .match(
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-            )
-    ) {
-        return "Must be a valid email address";
-    }
-    return "";
-});
-const isError = computed(() => {
-    return (
-        nameError.value !== "" ||
-        emailError.value !== "" ||
-        phoneError.value !== ""
-    );
-});
-
-// Functions --------------------
-const isOkResponse = (response: unknown): response is MailApiResponse => {
-    return (
-        typeof response === "object" &&
-        response !== null &&
-        "success" in response &&
-        response.success === true
-    );
-};
-const clearForm = () => {
-    Object.assign(contactForm, {
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
-        website: "",
-    });
-    validateName.value = false;
-    validateEmail.value = false;
-    validatePhone.value = false;
-    resultMessage.value = "";
-};
-const submitToServer = () => {
-    return $fetch(`/api/mail`, {
-        method: "POST",
-        body: JSON.stringify(contactForm),
-        headers: {
-            "Content-Type": "application/json",
-        },
-        timeout: 10000, // 10 second timeout
-    });
-};
-const handleSubmit = async () => {
-    loading.value = true;
-    try {
-        const response = await submitToServer();
-        if (isOkResponse(response)) {
-            clearForm();
-            resultMessage.value = "✅ Thank you for your message.";
-        } else {
-            // Show error message from server if there is one
-            const errorMsg =
-                typeof response === "object" &&
-                response !== null &&
-                "error" in response &&
-                typeof response.error === "string"
-                    ? response.error
-                    : "There was an error sending your message.";
-            resultMessage.value = `❌ ${errorMsg}`;
-        }
-    } catch (e) {
-        console.error(e);
-        if (
-            e instanceof Error &&
-            (e.message.includes("timeout") || e.message.includes("network"))
-        ) {
-            resultMessage.value =
-                "❌ Network issue. Please check your connection and try again.";
-        } else {
-            resultMessage.value =
-                "❌ Sorry, there was an error. Please try later.";
-        }
-    } finally {
-        loading.value = false;
-    }
-};
+// Template component for the contact form.
+// The logic is handled by the useContactForm composable, as this file became
+// very large.
+import { useContactForm } from "~~/app/composables/useContactForm";
+const { errors, loading, resultMessage, contactForm, validate, handleSubmit } =
+    useContactForm();
 </script>
 
 <template>
@@ -136,15 +17,15 @@ const handleSubmit = async () => {
                 name="name"
                 type="text"
                 placeholder="name"
-                :aria-invalid="nameError && validateName ? 'true' : 'false'"
+                :aria-invalid="errors.name && validate.name ? 'true' : 'false'"
                 :aria-describedby="
-                    nameError && validateName ? 'name-error' : undefined
+                    errors.name && validate.name ? 'name-error' : undefined
                 "
                 :class="[
                     'px-2 py-2 rounded-lg bg-inherit border-2 focus:ring-1 focus:ring-primary dark:focus:ring-primary focus:border-primary dark:focus:border-primary',
-                    { error: nameError && validateName },
+                    { error: errors.name && validate.name },
                 ]"
-                @blur="validateName = true"
+                @blur="validate.name = true"
             />
             <p
                 id="name-error"
@@ -153,8 +34,8 @@ const handleSubmit = async () => {
                 class="text-error-light text-sm my-0!"
             >
                 <transition name="fade" mode="out-in">
-                    <span v-if="nameError && validateName">{{
-                        nameError
+                    <span v-if="errors.name && validate.name">{{
+                        errors.name
                     }}</span>
                     <br v-else />
                 </transition>
@@ -166,15 +47,17 @@ const handleSubmit = async () => {
                 name="email"
                 type="email"
                 placeholder="email"
-                :aria-invalid="emailError && validateEmail ? 'true' : 'false'"
+                :aria-invalid="
+                    errors.email && validate.email ? 'true' : 'false'
+                "
                 :aria-describedby="
-                    emailError && validateEmail ? 'email-error' : undefined
+                    errors.email && validate.email ? 'email-error' : undefined
                 "
                 :class="[
                     'px-2 py-2 rounded-lg bg-inherit border-2 focus:ring-1 focus:ring-primary dark:focus:ring-primary focus:border-primary dark:focus:border-primary',
-                    { error: emailError && validateEmail },
+                    { error: errors.email && validate.email },
                 ]"
-                @blur="validateEmail = true"
+                @blur="validate.email = true"
             />
             <p
                 id="email-error"
@@ -183,8 +66,8 @@ const handleSubmit = async () => {
                 class="text-error-light text-sm my-0!"
             >
                 <transition name="fade" mode="out-in">
-                    <span v-if="emailError && validateEmail">{{
-                        emailError
+                    <span v-if="errors.email && validate.email">{{
+                        errors.email
                     }}</span>
                     <br v-else />
                 </transition>
@@ -196,15 +79,17 @@ const handleSubmit = async () => {
                 name="phone"
                 type="tel"
                 placeholder="phone"
-                :aria-invalid="phoneError && validatePhone ? 'true' : 'false'"
+                :aria-invalid="
+                    errors.phone && validate.phone ? 'true' : 'false'
+                "
                 :aria-describedby="
-                    phoneError && validatePhone ? 'phone-error' : undefined
+                    errors.phone && validate.phone ? 'phone-error' : undefined
                 "
                 :class="[
                     'px-2 py-2 rounded-lg bg-inherit border-2 focus:ring-1 focus:ring-primary dark:focus:ring-primary focus:border-primary dark:focus:border-primary',
-                    { error: phoneError && validatePhone },
+                    { error: errors.phone && validate.phone },
                 ]"
-                @blur="validatePhone = true"
+                @blur="validate.phone = true"
             />
             <p
                 id="phone-error"
@@ -213,8 +98,8 @@ const handleSubmit = async () => {
                 class="text-error-light text-sm my-0!"
             >
                 <transition name="fade" mode="out-in">
-                    <span v-if="phoneError && validatePhone">{{
-                        phoneError
+                    <span v-if="errors.phone && validate.phone">{{
+                        errors.phone
                     }}</span>
                     <br v-else />
                 </transition>
@@ -242,8 +127,9 @@ const handleSubmit = async () => {
             />
             <br />
             <div class="w-full text-center">
+                <!-- gotta use .value here, keep TS happy about using computed -->
                 <button
-                    :disabled="isError || loading"
+                    :disabled="errors.isError || loading"
                     class="text-white bg-primary-hover w-[50%] py-2 px-4 font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-primary hover:shadow-xl hover:opacity-75 ease-in-out duration-300 flex flex-row items-center justify-center mx-auto mt-5 disabled:opacity-40 disabled:cursor-not-allowed disabled:focus:ring-0"
                     @click.stop.prevent="handleSubmit"
                 >
@@ -290,7 +176,7 @@ const handleSubmit = async () => {
 .fade-leave-active {
     transition:
         opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) 0.1s,
-        transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) 0.1s;
+        transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) 0.1s;
 }
 .fade-enter-from,
 .fade-leave-to {
