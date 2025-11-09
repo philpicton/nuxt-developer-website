@@ -19,13 +19,7 @@ useSeoMeta({
 
 <template>
     <div>
-        <div v-if="pending" class="flex justify-center py-12">
-            <div
-                class="animate-spin h-8 w-8 border-4 border-green-500 border-t-transparent rounded-full"
-                role="status"
-                aria-label="Loading project"
-            ></div>
-        </div>
+        <MainLoadingSpinner v-if="pending"></MainLoadingSpinner>
         <article v-else-if="project">
             <header class="mb-8">
                 <h1 class="mb-3">{{ project.title }}</h1>

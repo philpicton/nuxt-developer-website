@@ -55,13 +55,8 @@ function goToPage(page: number) {
         <h1>Recent Posts</h1>
         <hr />
 
-        <div v-if="pending" class="flex justify-center py-12">
-            <div
-                class="animate-spin h-8 w-8 border-4 border-loading border-t-transparent rounded-full"
-                role="status"
-                aria-label="Loading posts"
-            ></div>
-        </div>
+        <MainLoadingSpinner v-if="pending" />
+
         <template v-else>
             <ContentBlogPostsList
                 v-if="paginatedPosts && paginatedPosts.length > 0"

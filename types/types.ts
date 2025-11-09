@@ -41,3 +41,17 @@ export interface MailApiResponse {
     success: boolean;
     error?: string;
 }
+
+export type ContactForm = {
+    name: string;
+    email: string;
+    phone: string;
+    message: string;
+    website: string; // honeypot
+};
+
+export type ContactFormValidation = {
+    name: boolean;
+    email: boolean;
+    phone: boolean;
+};

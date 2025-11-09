@@ -27,13 +27,7 @@ if (!posts.value || posts.value.length === 0) {
     <div>
         <h1 class="mb-4 text-3xl font-bold">Posts tagged with "{{ tag }}"</h1>
         <hr />
-        <div v-if="pending" class="flex justify-center py-12">
-            <div
-                class="animate-spin h-8 w-8 border-4 border-loading border-t-transparent rounded-full"
-                role="status"
-                aria-label="Loading posts"
-            ></div>
-        </div>
+        <MainLoadingSpinner v-if="pending" />
         <ContentBlogPostsList
             v-else-if="posts && posts.length > 0"
             :posts="posts"

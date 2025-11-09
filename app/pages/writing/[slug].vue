@@ -19,17 +19,8 @@ useSeoMeta({
 
 <template>
     <div>
-        <div v-if="pending" class="flex justify-center py-12">
-            <div
-                class="animate-spin h-8 w-8 border-4 border-green-500 border-t-transparent rounded-full"
-                role="status"
-                aria-label="Loading post"
-            ></div>
-        </div>
-        <article
-            v-else-if="post"
-            class="prose-code:before:content-none prose-code:after:content-none"
-        >
+        <MainLoadingSpinner v-if="pending" />
+        <article v-else-if="post">
             <ContentBlogTag
                 v-for="tag in post.tags"
                 :key="tag"
