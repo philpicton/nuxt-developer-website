@@ -87,28 +87,6 @@ bun run audit:fix        # Auto-fix vulnerabilities
 bun run outdated         # Check for outdated packages
 ```
 
-## Project Structure
-
-```
-.
-├── .github/
-│   ├── workflows/       # CI/CD pipelines
-│   ├── dependabot.yml   # Dependency updates
-│   └── *.md             # GitHub setup documentation
-├── assets/css/          # Global styles
-├── components/          # Vue components
-├── content/             # Markdown content
-│   ├── writing/         # Blog posts
-│   └── projects/        # Portfolio projects
-├── layouts/             # Page layouts
-├── pages/               # File-based routing
-├── public/              # Static assets
-├── server/api/          # Serverless API routes
-├── tests/               # Unit test suite
-├── types/               # TypeScript definitions
-└── nuxt.config.ts       # Nuxt configuration
-```
-
 ## Content Management
 
 ### Create a Blog Post
@@ -163,13 +141,13 @@ Every push to `main` automatically:
 
 1. Fork this repository to your GitHub account
 
-2. Check it out locally and set up environment variables in `.env`
+2. Check it out locally and set up local environment variables in `.env` file (as above)
 
 3. **Create NuxtHub Project**
     - Visit [hub.nuxt.com](https://hub.nuxt.com)
     - Create new project and link Cloudflare account
     - Link your GitHub repository in NuxtHub
-    - Add environment variables
+    - Add environment variables in NuxtHub
     - Optional add a custom domain in NuxtHub/Cloudflare
 
 4. **Configure Repository Settings**
@@ -198,7 +176,7 @@ The project includes unit tests covering components and pages:
 bun run test
 
 # Run specific test file
-bun run test -- BackButton.test.ts
+bun run test -- MainComponent.test.ts
 
 # Run tests in CI mode
 bun run test -- --run
@@ -221,27 +199,28 @@ Tests run automatically in CI/CD and block merges/deployments if failing.
 - Honeypot anti-spam field
 - Rate limiting with Cloudflare KV (configurable IP-based limits)
 - Server-side validation and sanitization
-- XSS prevention
 
 ## Customization
 
 ### Content
 
-1. **Homepage** - Edit `content/home.md` with your introduction
-2. **About Page** - Edit `content/about.md` with your background
+1. **Homepage** - Edit `content/pages/home.md` with your introduction
+2. **About Page** - Edit `content/pages/about.md` with your background
 3. **Blog Posts** - Replace examples in `content/writing/`
 4. **Projects** - Replace examples in `content/projects/`
 5. **Images** - Add your images to `public/images/`
-6. **Footer** - Update `components/SiteFooter.vue` with your name
+6. **Footer** - Update `components/main/MainSiteFooter.vue` with your name
 
 ### Styling
 
-- **Main styles** - Edit `assets/css/main.css`
+- **Main styles and theme** - Edit `assets/css/main.css`
 - **Tailwind config** - Modify `nuxt.config.ts`
-- **Component styles** - Each component has scoped CSS
+- **Component styles** - Some components have scoped styles as well as tailwind classes
+- **Favicon** - Replace `public/favicon.ico` and the other `.png`s with your own
 
 ### Configuration
 
+- **SEO** - Edit meta tags in `app.vue` and individual pages/components as needed, add OG tags, edit `robots.txt`, etc. See Nuxt documentation for details
 - **App config** - Edit `app.config.ts`
 - **Nuxt config** - Edit `nuxt.config.ts`
 - **Content config** - Edit `content.config.ts`
