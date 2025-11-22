@@ -40,6 +40,7 @@ export default defineEventHandler(async (event) => {
         }
     }
 
+    const isDevelopment = process.env.NODE_ENV === "development";
     const kv = hubKV();
     const contentType = getHeader(event, "content-type");
     const body = await readBody<ContactFormData>(event);
@@ -49,6 +50,17 @@ export default defineEventHandler(async (event) => {
     const ttl = Number(process.env.RATE_LIMIT_TTL_SECONDS);
 
     // 2. Functions ------------------------------
+
+    // We only log to console in development mode for perf and security reasons
+    function doLog(
+        type: "log" | "warn" | "error",
+        message: string,
+        ...args: unknown[]
+    ) {
+        if (isDevelopment) {
+            console[type](message, ...args);
+        }
+    }
 
     // Sanitize HTML entities to prevent XSS
     function escapeHtml(text: string): string {
@@ -174,28 +186,21 @@ export default defineEventHandler(async (event) => {
                     const data = await res.json();
                     // Basic validation that response has expected structure
                     if (data && typeof data === "object") {
-                        if (process.env.NODE_ENV === "development") {
-                            console.log("Mail sent:", data);
-                        }
+                        doLog("log", "Email sent successfully:", data);
                         return true;
                     }
                 }
                 // Response OK but unexpected format
-                if (process.env.NODE_ENV === "development") {
-                    console.warn(
-                        "Email API returned OK but unexpected response format",
-                    );
-                }
+                doLog(
+                    "warn",
+                    "Email API returned OK but unexpected response format",
+                );
                 return true; // Still consider it success if status is OK
             }
             // Log non-OK responses
-            if (process.env.NODE_ENV === "development") {
-                console.error("Email API error:", res.status, res.statusText);
-            }
+            doLog("error", "Email API error:", res.status, res.statusText);
         } catch (error: unknown) {
-            if (process.env.NODE_ENV === "development") {
-                console.error("Mail error:", error);
-            }
+            doLog("error", "Failed to send email due to exception:", error);
             return false;
         }
         return false;
@@ -214,12 +219,16 @@ export default defineEventHandler(async (event) => {
         if (emailSent) {
             return { success: true };
         }
-        return { success: false, error: "Failed to send email." };
-        // catch errors
+        return {
+            success: false,
+            error: "Failed to send email. Sorry, please try later.",
+        };
+        // catch errors not handled above
     } catch (error: unknown) {
-        if (process.env.NODE_ENV === "development") {
-            console.error("Server error:", error);
-        }
-        return { success: false, error: "Server error." };
+        doLog("error", "Unhandled server error:", error);
+        return {
+            success: false,
+            error: "Sorry, there was a server error. Please try later.",
+        };
     }
 });
