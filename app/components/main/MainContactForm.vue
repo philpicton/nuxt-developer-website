@@ -127,7 +127,6 @@ const { errors, loading, resultMessage, contactForm, validate, handleSubmit } =
             />
             <br />
             <div class="w-full text-center">
-                <!-- gotta use .value here, keep TS happy about using computed -->
                 <button
                     :disabled="errors.isError || loading"
                     class="text-white bg-primary-hover w-[50%] py-2 px-4 font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-primary hover:shadow-xl hover:opacity-75 ease-in-out duration-300 flex flex-row items-center justify-center mx-auto mt-5 disabled:opacity-40 disabled:cursor-not-allowed disabled:focus:ring-0"
