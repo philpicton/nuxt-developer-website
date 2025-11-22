@@ -4,16 +4,12 @@ import type { ProjectItem } from "~~/types/types";
 defineProps<{
     project: ProjectItem;
 }>();
-
-const isHovered = ref(false);
 </script>
 
 <template>
     <NuxtLink
         :to="project.path"
         class="group block bg-card-bg dark:bg-card-bg-dark rounded-lg overflow-hidden shadow-md ring-1 ring-border-light dark:ring-border-dark transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-neutral-bg-dark"
-        @mouseenter="isHovered = true"
-        @mouseleave="isHovered = false"
     >
         <!-- Thumbnail -->
         <figure
