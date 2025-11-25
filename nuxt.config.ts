@@ -49,6 +49,14 @@ export default defineNuxtConfig({
             subsets: ["latin"],
         },
     },
+    colorMode: {
+        preference: "system", // default value of $colorMode.preference
+        fallback: "dark", // fallback value if not system preference found
+        globalName: "__NUXT_COLOR_MODE__",
+        componentName: "ColorScheme",
+        storage: "cookie",
+        storageKey: "nuxt-color-mode",
+    },
     icon: {
         serverBundle: "local",
     },

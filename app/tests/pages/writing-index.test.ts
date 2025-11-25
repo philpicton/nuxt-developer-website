@@ -3,7 +3,7 @@ import { describe, it, expect } from "vitest";
 import { mountSuspended, mockNuxtImport } from "@nuxt/test-utils/runtime";
 import WritingIndexPage from "~/pages/writing/index.vue";
 
-const mockPosts = [
+const mockPostsData = ref([
     {
         title: "First Blog Post",
         path: "/writing/first-post",
@@ -22,11 +22,11 @@ const mockPosts = [
         description: "This is the third post",
         tags: ["javascript"],
     },
-];
+]);
 
 mockNuxtImport("useAsyncData", () => {
     return () => ({
-        data: ref(mockPosts),
+        data: mockPostsData,
         pending: ref(false),
         error: ref(null),
         refresh: () => {},
@@ -34,13 +34,42 @@ mockNuxtImport("useAsyncData", () => {
 });
 
 describe("Writing Index Page", () => {
-    it("renders heading and pagination controls", async () => {
+    it("does not render pagination with few posts, then shows it when more are added", async () => {
         const wrapper = await mountSuspended(WritingIndexPage, {
             route: "/writing",
         });
 
-        expect(wrapper.find("h1").text()).toBe("Recent Posts");
-        expect(wrapper.findAll("button").length).toBeGreaterThan(0);
+        // With only 3 posts and 5 per page, pagination should NOT render
+        let pagination = wrapper.findComponent({ name: "ContentPagination" });
+        expect(pagination.exists()).toBe(false);
+
+        // Add more posts to require pagination
+        mockPostsData.value.push(
+            {
+                title: "Fourth Blog Post",
+                path: "/writing/fourth-post",
+                description: "This is the fourth post",
+                tags: ["vue"],
+            },
+            {
+                title: "Fifth Blog Post",
+                path: "/writing/fifth-post",
+                description: "This is the fifth post",
+                tags: ["nuxt"],
+            },
+            {
+                title: "Sixth Blog Post",
+                path: "/writing/sixth-post",
+                description: "This is the sixth post",
+                tags: ["testing"],
+            },
+        );
+
+        await wrapper.vm.$nextTick();
+
+        // Now with 6 posts and 5 per page, we should have 2 pages, so pagination should render
+        pagination = wrapper.findComponent({ name: "ContentPagination" });
+        expect(pagination.exists()).toBe(true);
     });
 
     it("renders BlogPostsList with mocked posts", async () => {
@@ -73,8 +102,9 @@ describe("Writing Index Page", () => {
             route: "/writing",
         });
 
-        const buttons = wrapper.findAll("button");
-        // Should have prev/next buttons at minimum
-        expect(buttons.length).toBeGreaterThanOrEqual(2);
+        const pagination = wrapper.findComponent({ name: "ContentPagination" });
+        expect(pagination.exists()).toBe(true);
+        expect(pagination.props("currentPage")).toBeDefined();
+        expect(pagination.props("totalPages")).toBeDefined();
     });
 });
