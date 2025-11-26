@@ -30,13 +30,11 @@ useSeoMeta({
                 </p>
 
                 <div class="flex flex-wrap gap-2 mb-4 not-prose">
-                    <span
+                    <ContentTechPill
                         v-for="tech in project.tech"
                         :key="tech"
-                        class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-primary/10 dark:bg-primary/30 text-primary-dark dark:text-primary-light ring-1 ring-primary/20 dark:ring-primary/70"
-                    >
-                        {{ tech }}
-                    </span>
+                        :text="tech"
+                    />
                 </div>
 
                 <ClientOnly>

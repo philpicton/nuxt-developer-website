@@ -79,7 +79,7 @@ bun run lint             # Run ESLint
 bun run format           # Format code with Prettier
 bun run format:check     # Check formatting
 bun run typecheck        # TypeScript type checking
-bun run check            # Run all quality checks
+bun run check            # Run quality checks and tests
 
 # Security
 bun run audit            # Check for vulnerabilities

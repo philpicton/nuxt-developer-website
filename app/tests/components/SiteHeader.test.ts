@@ -28,35 +28,39 @@ describe("MainSiteHeader", () => {
         ).toBe(true);
     });
 
+    it("includes HamburgerButton component", async () => {
+        const wrapper = await mountSuspended(MainSiteHeader);
+
+        expect(
+            wrapper.findComponent({ name: "MainHamburgerButton" }).exists(),
+        ).toBe(true);
+    });
+
     it("has mobile menu toggle functionality", async () => {
         const wrapper = await mountSuspended(MainSiteHeader);
-        const buttons = wrapper.findAll("button");
-        const menuButton = buttons.find(
-            (btn) => btn.attributes("aria-label") === "Main menu",
-        );
+        const hamburgerButton = wrapper.findComponent({
+            name: "MainHamburgerButton",
+        });
 
-        expect(menuButton).toBeDefined();
-        if (menuButton) {
-            // @ts-expect-error typescript does not infer the type of the component
-            expect(wrapper.vm.open).toBe(false);
-            await menuButton.trigger("click");
-            // @ts-expect-error typescript does not infer the type of the component
-            expect(wrapper.vm.open).toBe(true);
-            await menuButton.trigger("click");
-            // @ts-expect-error typescript does not infer the type of the component
-            expect(wrapper.vm.open).toBe(false);
-        }
+        expect(hamburgerButton.exists()).toBe(true);
+        // @ts-expect-error typescript does not infer the type of the component
+        expect(wrapper.vm.open).toBe(false);
+        await hamburgerButton.find("button").trigger("click");
+        // @ts-expect-error typescript does not infer the type of the component
+        expect(wrapper.vm.open).toBe(true);
+        await hamburgerButton.find("button").trigger("click");
+        // @ts-expect-error typescript does not infer the type of the component
+        expect(wrapper.vm.open).toBe(false);
     });
 
     it("closes menu when navigation link is clicked", async () => {
         const wrapper = await mountSuspended(MainSiteHeader);
-        const buttons = wrapper.findAll("button");
-        const menuButton = buttons.find(
-            (btn) => btn.attributes("aria-label") === "Main menu",
-        );
+        const hamburgerButton = wrapper.findComponent({
+            name: "MainHamburgerButton",
+        });
 
-        if (menuButton) {
-            await menuButton.trigger("click");
+        if (hamburgerButton.exists()) {
+            await hamburgerButton.find("button").trigger("click");
             // @ts-expect-error typescript does not infer the type of the component
             expect(wrapper.vm.open).toBe(true);
             const firstLink = wrapper.find("li a");

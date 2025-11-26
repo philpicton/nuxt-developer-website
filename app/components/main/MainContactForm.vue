@@ -14,6 +14,8 @@ const { errors, loading, resultMessage, contactForm, validate, handleSubmit } =
             <input
                 id="name"
                 v-model="contactForm.name"
+                autocomplete="name"
+                autofocus="true"
                 name="name"
                 type="text"
                 placeholder="name"
@@ -44,6 +46,7 @@ const { errors, loading, resultMessage, contactForm, validate, handleSubmit } =
             <input
                 id="email"
                 v-model="contactForm.email"
+                autocomplete="email"
                 name="email"
                 type="email"
                 placeholder="email"
@@ -76,6 +79,7 @@ const { errors, loading, resultMessage, contactForm, validate, handleSubmit } =
             <input
                 id="phone"
                 v-model="contactForm.phone"
+                autocomplete="tel"
                 name="phone"
                 type="tel"
                 placeholder="phone"
@@ -107,6 +111,7 @@ const { errors, loading, resultMessage, contactForm, validate, handleSubmit } =
             <br />
             <label for="website" class="hidden" tabindex="-1">website</label>
             <input
+                id="website"
                 v-model="contactForm.website"
                 name="website"
                 type="text"
