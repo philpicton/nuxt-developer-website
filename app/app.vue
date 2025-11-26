@@ -51,6 +51,9 @@ useHead({
                 colorMode.value === "dark" ? themeColorDark : themeColorLight,
         },
     ],
+    htmlAttrs: {
+        lang: "en",
+    },
 });
 </script>
 
