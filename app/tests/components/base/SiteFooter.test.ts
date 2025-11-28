@@ -1,11 +1,11 @@
 // @vitest-environment nuxt
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
-import MainSiteFooter from "~/components/main/MainSiteFooter.vue";
+import BaseSiteFooter from "~/components/base/BaseSiteFooter.vue";
 
-describe("MainSiteFooter", () => {
+describe("BaseSiteFooter", () => {
     it("renders footer with copyright and current year", async () => {
-        const wrapper = await mountSuspended(MainSiteFooter);
+        const wrapper = await mountSuspended(BaseSiteFooter);
         const currentYear = new Date().getFullYear();
 
         expect(wrapper.find("footer").exists()).toBe(true);

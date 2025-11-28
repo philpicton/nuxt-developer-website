@@ -27,7 +27,7 @@ if (!posts.value || posts.value.length === 0) {
     <div>
         <h1 class="mb-4 text-3xl font-bold">Posts tagged with "{{ tag }}"</h1>
         <hr />
-        <MainLoadingSpinner v-if="pending" />
+        <BaseLoadingSpinner v-if="pending" />
         <ContentBlogPostsList
             v-else-if="posts && posts.length > 0"
             :posts="posts"

@@ -19,7 +19,7 @@ useSeoMeta({
 
 <template>
     <div>
-        <MainLoadingSpinner v-if="pending"></MainLoadingSpinner>
+        <BaseLoadingSpinner v-if="pending" />
         <article v-else-if="project">
             <header class="mb-8">
                 <h1 class="mb-3">{{ project.title }}</h1>

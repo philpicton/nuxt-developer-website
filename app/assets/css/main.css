@@ -17,8 +17,8 @@
     --color-accent-dark-hover: #475569; /* slate-600 */
 
     /* Neutral backgrounds and text */
-    --color-neutral-bg: #e2e8f0; /* slate-300 - outer background */
-    --color-neutral-bg-dark: #0f172a; /* slate-900 - dark outer background */
+    --color-neutral-bg: #e2e8f0; /* slate-300 - outer page background */
+    --color-neutral-bg-dark: #0f172a; /* slate-900 - dark outer page background */
     --color-card-bg: #ffffff; /* white - card background */
     --color-card-bg-dark: #1e293b; /* slate-800 - dark card background */
 

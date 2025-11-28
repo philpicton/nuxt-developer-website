@@ -1,11 +1,11 @@
 // @vitest-environment nuxt
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
-import MainLoadingSpinner from "~/components/main/MainLoadingSpinner.vue";
+import BaseLoadingSpinner from "~/components/base/BaseLoadingSpinner.vue";
 
-describe("MainLoadingSpinner", () => {
+describe("BaseLoadingSpinner", () => {
     it("renders the loading spinner", async () => {
-        const wrapper = await mountSuspended(MainLoadingSpinner);
+        const wrapper = await mountSuspended(BaseLoadingSpinner);
 
         expect(wrapper.find('[role="status"]').exists()).toBe(true);
         expect(wrapper.find('[aria-label="Loading content"]').exists()).toBe(

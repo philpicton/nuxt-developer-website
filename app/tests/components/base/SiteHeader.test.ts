@@ -1,11 +1,11 @@
 // @vitest-environment nuxt
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
-import MainSiteHeader from "~/components/main/MainSiteHeader.vue";
+import BaseSiteHeader from "~/components/base/BaseSiteHeader.vue";
 
-describe("MainSiteHeader", () => {
+describe("BaseSiteHeader", () => {
     it("renders nav with expected navigation links", async () => {
-        const wrapper = await mountSuspended(MainSiteHeader);
+        const wrapper = await mountSuspended(BaseSiteHeader);
         const expectedLinks = [
             "home",
             "about",
@@ -21,25 +21,25 @@ describe("MainSiteHeader", () => {
     });
 
     it("includes ColorModeSwitch component", async () => {
-        const wrapper = await mountSuspended(MainSiteHeader);
+        const wrapper = await mountSuspended(BaseSiteHeader);
 
         expect(
-            wrapper.findComponent({ name: "MainColorModeSwitch" }).exists(),
+            wrapper.findComponent({ name: "BaseColorModeSwitch" }).exists(),
         ).toBe(true);
     });
 
     it("includes HamburgerButton component", async () => {
-        const wrapper = await mountSuspended(MainSiteHeader);
+        const wrapper = await mountSuspended(BaseSiteHeader);
 
         expect(
-            wrapper.findComponent({ name: "MainHamburgerButton" }).exists(),
+            wrapper.findComponent({ name: "BaseHamburgerButton" }).exists(),
         ).toBe(true);
     });
 
     it("has mobile menu toggle functionality", async () => {
-        const wrapper = await mountSuspended(MainSiteHeader);
+        const wrapper = await mountSuspended(BaseSiteHeader);
         const hamburgerButton = wrapper.findComponent({
-            name: "MainHamburgerButton",
+            name: "BaseHamburgerButton",
         });
 
         expect(hamburgerButton.exists()).toBe(true);
@@ -54,9 +54,9 @@ describe("MainSiteHeader", () => {
     });
 
     it("closes menu when navigation link is clicked", async () => {
-        const wrapper = await mountSuspended(MainSiteHeader);
+        const wrapper = await mountSuspended(BaseSiteHeader);
         const hamburgerButton = wrapper.findComponent({
-            name: "MainHamburgerButton",
+            name: "BaseHamburgerButton",
         });
 
         if (hamburgerButton.exists()) {

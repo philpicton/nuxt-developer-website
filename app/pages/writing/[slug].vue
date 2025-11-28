@@ -19,7 +19,7 @@ useSeoMeta({
 
 <template>
     <div>
-        <MainLoadingSpinner v-if="pending" />
+        <BaseLoadingSpinner v-if="pending" />
         <article v-else-if="post">
             <ContentBlogTag
                 v-for="tag in post.tags"

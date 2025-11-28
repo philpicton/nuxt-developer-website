@@ -19,7 +19,7 @@ describe("Contact Page", () => {
         });
 
         expect(
-            wrapper.findComponent({ name: "MainContactForm" }).exists(),
+            wrapper.findComponent({ name: "BaseContactForm" }).exists(),
         ).toBe(true);
     });
 });

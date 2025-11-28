@@ -26,7 +26,7 @@ useSeoMeta({
                 Hello World
             </h1>
         </header>
-        <MainLoadingSpinner v-if="pending"></MainLoadingSpinner>
+        <BaseLoadingSpinner v-if="pending"></BaseLoadingSpinner>
         <ContentSectionRenderer v-else-if="home" :value="home" />
     </article>
 </template>

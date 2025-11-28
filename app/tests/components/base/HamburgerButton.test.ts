@@ -1,11 +1,11 @@
 // @vitest-environment nuxt
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
-import MainHamburgerButton from "~/components/main/MainHamburgerButton.vue";
+import BaseHamburgerButton from "~/components/base/BaseHamburgerButton.vue";
 
 describe("MainHamburgerButton", () => {
     it("renders button with SVG hamburger icon", async () => {
-        const wrapper = await mountSuspended(MainHamburgerButton);
+        const wrapper = await mountSuspended(BaseHamburgerButton);
 
         expect(wrapper.find("button").exists()).toBe(true);
         expect(wrapper.find("svg").exists()).toBe(true);
@@ -13,7 +13,7 @@ describe("MainHamburgerButton", () => {
     });
 
     it("displays correct aria-label when menu is closed", async () => {
-        const wrapper = await mountSuspended(MainHamburgerButton, {
+        const wrapper = await mountSuspended(BaseHamburgerButton, {
             props: {
                 modelValue: false,
             },
@@ -26,7 +26,7 @@ describe("MainHamburgerButton", () => {
     });
 
     it("displays correct aria-label when menu is open", async () => {
-        const wrapper = await mountSuspended(MainHamburgerButton, {
+        const wrapper = await mountSuspended(BaseHamburgerButton, {
             props: {
                 modelValue: true,
             },
@@ -39,7 +39,7 @@ describe("MainHamburgerButton", () => {
     });
 
     it("applies opened class to lines when menu is open", async () => {
-        const wrapper = await mountSuspended(MainHamburgerButton, {
+        const wrapper = await mountSuspended(BaseHamburgerButton, {
             props: {
                 modelValue: true,
             },
@@ -52,7 +52,7 @@ describe("MainHamburgerButton", () => {
     });
 
     it("does not apply opened class when menu is closed", async () => {
-        const wrapper = await mountSuspended(MainHamburgerButton, {
+        const wrapper = await mountSuspended(BaseHamburgerButton, {
             props: {
                 modelValue: false,
             },
@@ -65,7 +65,7 @@ describe("MainHamburgerButton", () => {
     });
 
     it("emits update:modelValue when button is clicked", async () => {
-        const wrapper = await mountSuspended(MainHamburgerButton, {
+        const wrapper = await mountSuspended(BaseHamburgerButton, {
             props: {
                 modelValue: false,
             },
@@ -77,7 +77,7 @@ describe("MainHamburgerButton", () => {
     });
 
     it("toggles value on multiple clicks", async () => {
-        const wrapper = await mountSuspended(MainHamburgerButton, {
+        const wrapper = await mountSuspended(BaseHamburgerButton, {
             props: {
                 modelValue: false,
             },

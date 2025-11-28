@@ -1,11 +1,11 @@
 // @vitest-environment nuxt
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
-import MainContactForm from "~/components/main/MainContactForm.vue";
+import BaseContactForm from "~/components/base/BaseContactForm.vue";
 
-describe("MainContactForm", () => {
+describe("BaseContactForm", () => {
     it("renders form with all required fields", async () => {
-        const wrapper = await mountSuspended(MainContactForm);
+        const wrapper = await mountSuspended(BaseContactForm);
 
         expect(wrapper.find("form").exists()).toBe(true);
         expect(wrapper.find("#name").exists()).toBe(true);
@@ -15,7 +15,7 @@ describe("MainContactForm", () => {
     });
 
     it("displays error message for invalid name", async () => {
-        const wrapper = await mountSuspended(MainContactForm);
+        const wrapper = await mountSuspended(BaseContactForm);
         const nameInput = wrapper.find("#name");
 
         await nameInput.setValue("a");
@@ -25,7 +25,7 @@ describe("MainContactForm", () => {
     });
 
     it("displays error message for invalid email", async () => {
-        const wrapper = await mountSuspended(MainContactForm);
+        const wrapper = await mountSuspended(BaseContactForm);
         const emailInput = wrapper.find("#email");
 
         await emailInput.setValue("invalid-email");
@@ -35,7 +35,7 @@ describe("MainContactForm", () => {
     });
 
     it("displays error message for invalid phone", async () => {
-        const wrapper = await mountSuspended(MainContactForm);
+        const wrapper = await mountSuspended(BaseContactForm);
         const phoneInput = wrapper.find("#phone");
 
         await phoneInput.setValue("123");
@@ -45,7 +45,7 @@ describe("MainContactForm", () => {
     });
 
     it("submit button is disabled when form has errors", async () => {
-        const wrapper = await mountSuspended(MainContactForm);
+        const wrapper = await mountSuspended(BaseContactForm);
         const button = wrapper.find("button");
 
         // Initially should be disabled (no name or email)
@@ -53,7 +53,7 @@ describe("MainContactForm", () => {
     });
 
     it("includes honeypot field that is hidden", async () => {
-        const wrapper = await mountSuspended(MainContactForm);
+        const wrapper = await mountSuspended(BaseContactForm);
         const honeypot = wrapper.find('input[name="website"]');
 
         expect(honeypot.exists()).toBe(true);

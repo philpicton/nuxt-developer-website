@@ -55,7 +55,7 @@ function goToPage(page: number) {
         <h1>Recent Posts</h1>
         <hr />
 
-        <MainLoadingSpinner v-if="pending" />
+        <BaseLoadingSpinner v-if="pending" />
 
         <template v-else>
             <ContentBlogPostsList

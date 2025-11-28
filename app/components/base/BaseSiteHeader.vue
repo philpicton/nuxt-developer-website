@@ -50,8 +50,8 @@ onUnmounted(() => {
             aria-label="Main navigation menu"
             :aria-expanded="(isMobile && open) || !isMobile ? 'true' : 'false'"
         >
-            <MainColorModeSwitch />
-            <MainHamburgerButton v-model="open" class="lg:hidden" />
+            <BaseColorModeSwitch />
+            <BaseHamburgerButton v-model="open" class="lg:hidden" />
             <div
                 class="w-full lg:inline-flex lg:flex-grow lg:w-auto lg:max-h-12 overflow-hidden transition-[max-height,opacity] duration-500 lg:transition-none lg:opacity-100"
                 :class="{
