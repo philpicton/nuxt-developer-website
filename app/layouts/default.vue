@@ -17,9 +17,9 @@
 
 /* override tailwind's styles for inline code */
 .prose :where(code):not(:where(pre *)) {
-    @apply bg-neutral-bg dark:bg-neutral-bg-dark p-1 rounded font-normal;
+    @apply bg-neutral-bg dark:bg-neutral-bg-dark px-2 py-1 rounded font-normal;
 }
-/* and the headings */
+/* remove link styling from the headings - stylistic choice */
 .prose h4 > a,
 .prose h3 > a,
 .prose h2 > a {
