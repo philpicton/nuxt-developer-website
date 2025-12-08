@@ -22,7 +22,7 @@
         "test:ui": "NODE_OPTIONS='--no-warnings' node ./node_modules/vitest/vitest.mjs --ui"
     },
     "dependencies": {
-        "@nuxt/content": "3.8.2",
+        "@nuxt/content": "3.9.0",
         "@nuxt/eslint": "1.10.0",
         "@nuxt/fonts": "0.12.1",
         "@nuxt/icon": "2.1.0",
