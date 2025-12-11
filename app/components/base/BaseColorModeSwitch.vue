@@ -18,7 +18,7 @@ const ariaLabel = computed(() =>
     >
         <ColorScheme placeholder="...">
             <Icon
-                v-if="colorMode.value === 'dark'"
+                v-if="colorMode.value === 'light'"
                 name="ph:moon-bold"
                 class="w-5 h-5 dark:text-white dark:hover:text-primary-dark-hover"
             />
